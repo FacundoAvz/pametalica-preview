@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pametalica — Referencia Visual Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     RESET & BASE
+  ========================================================= */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: #FFFFFF; color: #1A1A1A; font-family: 'Barlow', sans-serif; font-weight: 400; line-height: 1.6; }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  button, input, textarea { font-family: inherit; }
+
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  /* Helpers */
+  .tag-orange {
+    display: inline-block; font-family: 'Barlow', sans-serif; font-weight: 600;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 4px; color: #D5501B;
+  }
+  .divider-orange {
+    width: 48px; height: 3px; background: #D5501B; border: none; margin: 24px auto;
+  }
+
+  /* =========================================================
+     BLOQUE 1 — NAVBAR
+  ========================================================= */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 80px; background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  }
+  .navbar.scrolled {
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 16px 80px;
+  }
+  .navbar-logo { display: flex; align-items: center; }
+  .navbar-logo img { height: 36px; width: auto; transition: opacity 0.3s ease; }
+  .navbar-logo .logo-white { display: block; }
+  .navbar-logo .logo-black { display: none; }
+  .navbar.scrolled .navbar-logo .logo-white { display: none; }
+  .navbar.scrolled .navbar-logo .logo-black { display: block; }
+
+  .navbar-menu { display: flex; gap: 40px; }
+  .nav-item { position: relative; }
+  .navbar-menu .nav-link {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    color: #FFFFFF; text-transform: uppercase; letter-spacing: 1.5px;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.3s ease;
+    padding: 8px 0;
+  }
+  .navbar.scrolled .navbar-menu .nav-link { color: #1A1A1A; }
+  .navbar-menu .nav-link .arrow { font-size: 9px; }
+
+  /* Dropdown */
+  .dropdown {
+    position: absolute; top: 100%; left: 0;
+    background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    padding: 16px 0; min-width: 240px;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .nav-item:hover .dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .dropdown a {
+    display: block; padding: 12px 24px;
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    color: #1A1A1A; text-transform: none; letter-spacing: 0.3px;
+    transition: color 0.15s ease;
+  }
+  .dropdown a:hover { color: #D5501B; }
+
+  /* =========================================================
+     BLOQUE 2 — HERO
+  ========================================================= */
+  .hero {
+    position: relative; min-height: 700px; height: 100vh;
+    background-image: url('assets/home/camion-banner.png');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+    display: flex; align-items: center;
+    padding: 0 80px;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-tag { color: #D5501B; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 4px; }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 96px; color: #FFFFFF; text-transform: uppercase; line-height: 0.95;
+    max-width: 800px; margin-top: 24px;
+  }
+  .hero-subtitle {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 20px;
+    color: #DCDCDC; line-height: 1.5; max-width: 500px; margin-top: 24px;
+  }
+  .btn-orange {
+    display: inline-block; background: #D5501B; color: #FFFFFF;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px;
+    padding: 18px 36px; border: none; border-radius: 0; cursor: pointer;
+    margin-top: 40px;
+  }
+  .btn-orange:hover { background: #A33D14; }
+
+  /* =========================================================
+     BLOQUE 3 — SERVICIOS
+  ========================================================= */
+  .section-servicios { background: #FFFFFF; padding: 120px 80px; }
+  .section-header { text-align: center; max-width: 720px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 56px; color: #1A1A1A; text-transform: uppercase; letter-spacing: -0.5px;
+    margin-top: 12px;
+  }
+  .section-subtitle {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 18px;
+    color: #5A5A5A; text-align: center;
+  }
+
+  .cards-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    max-width: 1120px; margin: 80px auto 0;
+  }
+  .card { border: 1px solid #DCDCDC; background: #FFFFFF; }
+  .card-image {
+    background: #DCDCDC; height: 320px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 1px; color: #8A8A8A;
+  }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-body { padding: 32px; }
+  .card-tag { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: #D5501B; }
+  .card-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 32px; text-transform: uppercase; color: #1A1A1A; margin-top: 12px;
+  }
+  .card-desc {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 15px;
+    line-height: 1.7; color: #5A5A5A; margin-top: 16px;
+  }
+  .card-list { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .card-list li {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    color: #1A1A1A; display: flex; align-items: center; gap: 12px;
+  }
+  .card-list li::before {
+    content: ""; width: 8px; height: 8px; background: #D5501B; display: inline-block;
+  }
+  .card-cta {
+    display: inline-block; margin-top: 32px;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px; color: #D5501B;
+    border-bottom: 1px solid #D5501B; padding-bottom: 4px;
+  }
+
+  /* =========================================================
+     BLOQUE 4 — DIFERENCIALES
+  ========================================================= */
+  .section-pilares { background: #F0EFED; padding: 100px 80px; }
+  .pilares-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    max-width: 1120px; margin: 0 auto;
+  }
+  .pilar-icon {
+    width: 72px; height: 72px; color: #1A1A1A;
+  }
+  .pilar-icon svg { width: 72px; height: 72px; display: block; }
+  .pilar-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 18px; text-transform: uppercase; letter-spacing: 1px;
+    color: #1A1A1A; margin-top: 24px;
+  }
+  .pilar-desc {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 14px;
+    line-height: 1.6; color: #5A5A5A; margin-top: 8px;
+  }
+
+  /* =========================================================
+     BLOQUE 5 — NOSOTROS
+  ========================================================= */
+  .section-nosotros {
+    background: #1A1A1A; height: 700px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .nosotros-75 {
+    position: absolute; right: -50px; top: 50%; transform: translateY(-50%);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 500px; color: #2E2E2E; line-height: 1; pointer-events: none; z-index: 1;
+  }
+  .nosotros-container {
+    position: relative; z-index: 2;
+    max-width: 1280px; margin: 0 auto; padding: 0 80px;
+    display: flex; align-items: center; gap: 60px; width: 100%;
+  }
+  .nosotros-left { flex: 0 0 60%; }
+  .nosotros-right { flex: 0 0 40%; }
+  .nosotros-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 64px; color: #FFFFFF; text-transform: uppercase; line-height: 0.95;
+    margin-top: 20px;
+  }
+  .divider-orange-left { width: 48px; height: 3px; background: #D5501B; border: none; margin: 24px 0; }
+  .nosotros-text {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 16px;
+    color: #DCDCDC; line-height: 1.8; max-width: 540px;
+  }
+  .btn-outline-white {
+    display: inline-block; margin-top: 32px;
+    border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF;
+    padding: 16px 32px; font-family: 'Barlow', sans-serif; font-weight: 600;
+    font-size: 14px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer;
+  }
+  .nosotros-image {
+    background: #2E2E2E; height: 400px; border: 1px solid #5A5A5A;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 1px; color: #8A8A8A;
+    overflow: hidden;
+  }
+  .nosotros-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* =========================================================
+     BLOQUE 6 — CONTACTO
+  ========================================================= */
+  .section-contacto { background: #FFFFFF; padding: 120px 80px; }
+  .contacto-grid {
+    display: grid; grid-template-columns: 60% 40%; gap: 80px;
+    max-width: 1120px; margin: 80px auto 0;
+  }
+  .contacto-blocks { display: flex; flex-direction: column; gap: 32px; }
+  .contacto-block-tag {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 3px; color: #D5501B;
+  }
+  .contacto-block-info {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 16px;
+    color: #1A1A1A; line-height: 1.5; margin-top: 8px;
+  }
+  .btn-whatsapp {
+    display: inline-block; background: #25D366; color: #FFFFFF;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px;
+    padding: 18px 36px; border: none; border-radius: 0; cursor: pointer;
+    margin-top: 40px;
+  }
+  .form-box { background: #F0EFED; padding: 40px; }
+  .form-title {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 1px; color: #5A5A5A;
+  }
+  .form-fields { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .form-fields input, .form-fields textarea {
+    background: #FFFFFF; border: 1px solid #DCDCDC; padding: 14px;
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 15px;
+    color: #1A1A1A; outline: none; width: 100%;
+  }
+  .form-fields textarea { height: 120px; resize: vertical; }
+  .form-submit {
+    width: 100%; background: #D5501B; color: #FFFFFF; border: none; cursor: pointer;
+    padding: 18px; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px; margin-top: 24px;
+  }
+  .form-note {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 12px;
+    color: #8A8A8A; margin-top: 12px;
+  }
+
+  /* =========================================================
+     BLOQUE 7 — FOOTER
+  ========================================================= */
+  .footer { background: #1A1A1A; padding: 80px 80px; color: #DCDCDC; }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 60px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .footer-logo { display: block; }
+  .footer-logo img { height: 32px; width: auto; display: block; }
+  .footer-tagline {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px;
+    color: #8A8A8A; line-height: 1.6; margin-top: 16px;
+  }
+  .footer-col-title {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    color: #FFFFFF; text-transform: uppercase; letter-spacing: 3px;
+  }
+  .footer-list { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .footer-list li, .footer-list a {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 14px;
+    color: #DCDCDC; line-height: 1.8;
+  }
+  .footer-info { margin-top: 16px; }
+  .footer-info li {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px;
+    color: #DCDCDC; line-height: 1.8;
+  }
+  .footer-bottom {
+    max-width: 1280px; margin: 0 auto; padding-top: 32px; margin-top: 60px;
+    border-top: 1px solid #2E2E2E;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy, .footer-social {
+    font-family: 'Barlow', sans-serif; font-size: 12px; color: #8A8A8A;
+  }
+  .footer-copy { font-weight: 400; }
+  .footer-social { font-weight: 500; }
+
+  /* =========================================================
+     BOTÓN FLOTANTE WHATSAPP
+  ========================================================= */
+  .float-wa {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25D366; color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 28px;
+    z-index: 9999; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     BLOQUE 1 — NAVBAR
+============================================ -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="navbar-logo">
+    <img class="logo-white" src="assets/logos/logo-pametalica-blanco.svg" alt="Pametalica">
+    <img class="logo-black" src="assets/logos/logo-pametalica-negro.svg" alt="Pametalica">
+  </a>
+  <div class="navbar-menu">
+    <div class="nav-item">
+      <a href="#" class="nav-link">Servicios <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="#">Puertas Metálicas</a>
+        <a href="#">Carpintería de Aluminio</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#" class="nav-link">Nosotros</a>
+    </div>
+    <div class="nav-item">
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================
+     BLOQUE 2 — HERO
+============================================ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">FÁBRICA DE ABERTURAS · 1945</div>
+    <h1 class="hero-title">Más de 75 años fabricando aberturas metálicas</h1>
+    <p class="hero-subtitle">Puertas inyectadas, de seguridad e ignífugas. Carpintería de aluminio a medida.</p>
+    <a href="#contacto" class="btn-orange">Contactanos →</a>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOQUE 3 — SERVICIOS
+============================================ -->
+<section class="section-servicios">
+  <div class="section-header">
+    <span class="tag-orange">NUESTRAS LÍNEAS</span>
+    <h2 class="section-title">Qué fabricamos</h2>
+    <hr class="divider-orange">
+    <p class="section-subtitle">Dos especialidades. Una misma exigencia.</p>
+  </div>
+
+  <div class="cards-grid">
+    <article class="card">
+      <div class="card-image"><img src="assets/fotos-ia/foto-puerta-metalica.png" alt="Puerta metálica Pametalica"></div>
+      <div class="card-body">
+        <span class="card-tag">LÍNEA 01</span>
+        <h3 class="card-title">Puertas Metálicas</h3>
+        <p class="card-desc">Puertas de doble chapa inyectadas con poliuretano expandido. Líneas de seguridad, ignífugas, dobles y portones, y económica. Robustez, aislación térmica y acústica.</p>
+        <ul class="card-list">
+          <li>Inyectadas con poliuretano</li>
+          <li>De seguridad</li>
+          <li>Ignífugas</li>
+          <li>Dobles y portones</li>
+        </ul>
+        <a href="#" class="card-cta">Ver puertas metálicas →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image"><img src="assets/fotos-ia/foto-carpinteria-aluminio.png" alt="Carpintería de aluminio Pametalica"></div>
+      <div class="card-body">
+        <span class="card-tag">LÍNEA 02</span>
+        <h3 class="card-title">Carpintería de Aluminio</h3>
+        <p class="card-desc">Aberturas de aluminio a medida en alta, media y baja prestación. Líneas Módena, Vesta y A30 New de Aluar, Herrero y Rotonda. Vidrios float, laminados y DVH.</p>
+        <ul class="card-list">
+          <li>Módena</li>
+          <li>Vesta</li>
+          <li>A30 New</li>
+          <li>Herrero</li>
+          <li>Rotonda</li>
+        </ul>
+        <a href="#" class="card-cta">Ver carpintería de aluminio →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOQUE 4 — DIFERENCIALES
+============================================ -->
+<section class="section-pilares">
+  <div class="pilares-grid">
+    <div class="pilar">
+      <div class="pilar-icon">
+        <!-- Edificio industrial: dos plantas, techo a dos aguas, ventanas alineadas, chimenea -->
+        <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
+          <!-- Chimenea -->
+          <rect x="14" y="10" width="6" height="14"/>
+          <!-- Techo a dos aguas -->
+          <path d="M6 26 L36 10 L66 26"/>
+          <!-- Cuerpo del edificio -->
+          <rect x="10" y="26" width="52" height="38"/>
+          <!-- Línea divisoria entre plantas -->
+          <line x1="10" y1="44" x2="62" y2="44"/>
+          <!-- Ventanas planta alta -->
+          <rect x="18" y="30" width="8" height="9"/>
+          <rect x="32" y="30" width="8" height="9"/>
+          <rect x="46" y="30" width="8" height="9"/>
+          <!-- Ventanas planta baja -->
+          <rect x="18" y="49" width="8" height="9"/>
+          <rect x="46" y="49" width="8" height="9"/>
+          <!-- Puerta central -->
+          <path d="M32 64 L32 50 L40 50 L40 64"/>
+          <!-- Suelo -->
+          <line x1="2" y1="64" x2="70" y2="64"/>
+        </svg>
+      </div>
+      <h4 class="pilar-title">Fabricación propia</h4>
+      <p class="pilar-desc">Planta industrial de 5000 m² en Munro, Buenos Aires.</p>
+    </div>
+
+    <div class="pilar">
+      <div class="pilar-icon">
+        <!-- Escudo conmemorativo con "75" -->
+        <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter">
+          <!-- Círculo exterior -->
+          <circle cx="36" cy="36" r="30"/>
+          <!-- Círculo decorativo interior -->
+          <circle cx="36" cy="36" r="24"/>
+          <!-- Marcas decorativas tipo emblema -->
+          <line x1="36" y1="6" x2="36" y2="12"/>
+          <line x1="36" y1="60" x2="36" y2="66"/>
+          <line x1="6" y1="36" x2="12" y2="36"/>
+          <line x1="60" y1="36" x2="66" y2="36"/>
+          <!-- Número 75 -->
+          <text x="36" y="44" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="900" font-size="22" fill="currentColor" stroke="none" letter-spacing="-1">75</text>
+        </svg>
+      </div>
+      <h4 class="pilar-title">75 años de trayectoria</h4>
+      <p class="pilar-desc">Tres generaciones desarrollando aberturas en Argentina.</p>
+    </div>
+
+    <div class="pilar">
+      <div class="pilar-icon">
+        <!-- Compás arquitectónico abierto sobre línea horizontal -->
+        <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square">
+          <!-- Pivote superior -->
+          <circle cx="36" cy="14" r="3"/>
+          <!-- Brazos del compás -->
+          <line x1="34" y1="16.5" x2="14" y2="56"/>
+          <line x1="38" y1="16.5" x2="58" y2="56"/>
+          <!-- Arco/articulación -->
+          <path d="M28 28 Q36 32 44 28"/>
+          <!-- Puntas del compás -->
+          <line x1="14" y1="56" x2="11" y2="62"/>
+          <line x1="58" y1="56" x2="61" y2="62"/>
+          <!-- Línea de base / regla -->
+          <line x1="4" y1="62" x2="68" y2="62"/>
+          <!-- Marcas de la regla -->
+          <line x1="14" y1="62" x2="14" y2="66"/>
+          <line x1="26" y1="62" x2="26" y2="66"/>
+          <line x1="36" y1="62" x2="36" y2="66"/>
+          <line x1="46" y1="62" x2="46" y2="66"/>
+          <line x1="58" y1="62" x2="58" y2="66"/>
+        </svg>
+      </div>
+      <h4 class="pilar-title">Diseño propio</h4>
+      <p class="pilar-desc">Bisagras pivot y cerraduras de seguridad patentadas Pametálica.</p>
+    </div>
+
+    <div class="pilar">
+      <div class="pilar-icon">
+        <!-- Plano arquitectónico con cotas y escuadra -->
+        <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square">
+          <!-- Rectángulo principal (plano) -->
+          <rect x="6" y="14" width="48" height="40"/>
+          <!-- División interna -->
+          <line x1="30" y1="14" x2="30" y2="54"/>
+          <line x1="30" y1="34" x2="54" y2="34"/>
+          <!-- Cotas superiores: flechas -->
+          <line x1="6" y1="8" x2="54" y2="8"/>
+          <line x1="6" y1="5" x2="6" y2="11"/>
+          <line x1="54" y1="5" x2="54" y2="11"/>
+          <line x1="30" y1="5" x2="30" y2="11"/>
+          <!-- Cotas laterales -->
+          <line x1="62" y1="14" x2="62" y2="54"/>
+          <line x1="59" y1="14" x2="65" y2="14"/>
+          <line x1="59" y1="54" x2="65" y2="54"/>
+          <line x1="59" y1="34" x2="65" y2="34"/>
+          <!-- Escuadra superpuesta abajo-derecha -->
+          <path d="M42 46 L42 64 L66 64"/>
+          <line x1="46" y1="60" x2="50" y2="64"/>
+          <line x1="50" y1="56" x2="54" y2="60"/>
+          <line x1="54" y1="52" x2="58" y2="56"/>
+        </svg>
+      </div>
+      <h4 class="pilar-title">Soluciones a medida</h4>
+      <p class="pilar-desc">Cada proyecto se adapta a las necesidades del cliente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOQUE 5 — NOSOTROS
+============================================ -->
+<section class="section-nosotros">
+  <div class="nosotros-75">75</div>
+  <div class="nosotros-container">
+    <div class="nosotros-left">
+      <span class="tag-orange">NUESTRA HISTORIA</span>
+      <h2 class="nosotros-title">Más de 75 años. Tres generaciones.</h2>
+      <hr class="divider-orange-left">
+      <p class="nosotros-text">Mario Peluso fundó su taller de herrería en 1945. Junto a su hermano y su primo crearon Pametal, Peluso y Cía. S.R.L., con la marca PAMETÁLICA, introduciendo conceptos revolucionarios para la época: estandarización de perfiles, sistema corredizo y combinación de marcos de chapa con hojas de aluminio. Hoy, desde nuestra planta de 5000 m² en Munro, fabricamos con los mismos valores fundacionales.</p>
+    </div>
+    <div class="nosotros-right">
+      <div class="nosotros-image"><img src="assets/fotos-ia/foto-historia.png" alt="Historia Pametalica"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOQUE 6 — CONTACTO
+============================================ -->
+<section class="section-contacto" id="contacto">
+  <div class="section-header">
+    <span class="tag-orange">CONTACTO</span>
+    <h2 class="section-title">Hablemos de tu proyecto</h2>
+    <hr class="divider-orange">
+    <p class="section-subtitle">Te respondemos a la brevedad.</p>
+  </div>
+
+  <div class="contacto-grid">
+    <div>
+      <div class="contacto-blocks">
+        <div>
+          <div class="contacto-block-tag">DIRECCIÓN</div>
+          <div class="contacto-block-info">Belgrano 3174, Munro<br>Provincia de Buenos Aires, Argentina</div>
+        </div>
+        <div>
+          <div class="contacto-block-tag">TELÉFONO / FAX</div>
+          <div class="contacto-block-info">011 4762-3000</div>
+        </div>
+        <div>
+          <div class="contacto-block-tag">WHATSAPP</div>
+          <div class="contacto-block-info">11 2690-9379</div>
+        </div>
+        <div>
+          <div class="contacto-block-tag">EMAIL</div>
+          <div class="contacto-block-info">pametalica@pametalica.com.ar</div>
+        </div>
+      </div>
+      <button class="btn-whatsapp">Escribir por WhatsApp</button>
+    </div>
+
+    <div class="form-box">
+      <div class="form-title">Envianos tu consulta</div>
+      <div class="form-fields">
+        <input type="text" placeholder="Nombre completo">
+        <input type="email" placeholder="Email">
+        <input type="tel" placeholder="Teléfono">
+        <textarea placeholder="Tu consulta"></textarea>
+      </div>
+      <button class="form-submit">Enviar consulta</button>
+      <p class="form-note">Te respondemos en menos de 24 horas hábiles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOQUE 7 — FOOTER
+============================================ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><img src="assets/logos/logo-pametalica-blanco.svg" alt="Pametalica"></div>
+      <p class="footer-tagline">Fábrica de aberturas metálicas y carpintería de aluminio. Desde 1945.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">SERVICIOS</div>
+      <ul class="footer-list">
+        <li><a href="#">Puertas Metálicas</a></li>
+        <li><a href="#">Carpintería de Aluminio</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">EMPRESA</div>
+      <ul class="footer-list">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">CONTACTO</div>
+      <ul class="footer-info">
+        <li>011 4762-3000</li>
+        <li>WhatsApp 11 2690-9379</li>
+        <li>pametalica@pametalica.com.ar</li>
+        <li>Belgrano 3174, Munro</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Lado Luminoso S.R.L. — Todos los derechos reservados</div>
+    <div class="footer-social">Instagram · Facebook · LinkedIn</div>
+  </div>
+</footer>
+
+<!-- ============================================
+     BOTÓN FLOTANTE WHATSAPP
+============================================ -->
+<a href="#" class="float-wa" aria-label="WhatsApp">W</a>
+
+<script>
+  (function() {
+    var navbar = document.getElementById('navbar');
+    function onScroll() {
+      if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
