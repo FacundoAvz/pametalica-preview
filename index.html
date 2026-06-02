@@ -44,11 +44,20 @@
     padding: 16px 80px;
   }
   .navbar-brand {
+    display: flex; align-items: center; height: 52px;
+  }
+  .navbar-brand .brand-text {
     font-family: 'Barlow', sans-serif; font-weight: 600;
     font-size: 13px; color: #FFFFFF; text-transform: uppercase; letter-spacing: 4px;
-    transition: color 0.3s ease;
+    transition: opacity 0.3s ease;
   }
-  .navbar.scrolled .navbar-brand { color: #1A1A1A; }
+  .navbar-brand .brand-logo {
+    height: 48px; width: auto; display: block;
+    opacity: 0; position: absolute;
+    transition: opacity 0.3s ease;
+  }
+  .navbar.scrolled .navbar-brand .brand-text { opacity: 0; visibility: hidden; }
+  .navbar.scrolled .navbar-brand .brand-logo { opacity: 1; position: relative; }
 
   .navbar-menu { display: flex; gap: 40px; }
   .nav-item { position: relative; }
@@ -392,7 +401,10 @@
      BLOQUE 1 — NAVBAR
 ============================================ -->
 <nav class="navbar" id="navbar">
-  <a href="#" class="navbar-brand">FÁBRICA DE ABERTURAS · 1945</a>
+  <a href="#" class="navbar-brand">
+    <span class="brand-text">FÁBRICA DE ABERTURAS · 1945</span>
+    <img class="brand-logo" src="assets/logos/logo-pametalica-negro.svg" alt="Pametalica">
+  </a>
   <div class="navbar-menu">
     <div class="nav-item">
       <a href="#" class="nav-link">Productos <span class="arrow">▼</span></a>
