@@ -44,7 +44,7 @@
     padding: 16px 80px;
   }
   .navbar-logo { display: flex; align-items: center; }
-  .navbar-logo img { height: 36px; width: auto; transition: opacity 0.3s ease; }
+  .navbar-logo img { height: 52px; width: auto; transition: opacity 0.3s ease; }
   .navbar-logo .logo-white { display: block; }
   .navbar-logo .logo-black { display: none; }
   .navbar.scrolled .navbar-logo .logo-white { display: none; }
@@ -85,27 +85,28 @@
      BLOQUE 2 — HERO
   ========================================================= */
   .hero {
-    position: relative; min-height: 700px; height: 100vh;
+    position: relative; min-height: 600px; height: 75vh;
     background-image: url('assets/home/camion-banner.png');
     background-size: cover; background-position: center; background-repeat: no-repeat;
-    display: flex; align-items: center;
-    padding: 0 80px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 80px; text-align: center;
   }
   .hero::before {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.65) 100%);
     z-index: 1;
   }
-  .hero-content { position: relative; z-index: 2; max-width: 900px; }
-  .hero-tag { color: #D5501B; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 4px; }
-  .hero-title {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
-    font-size: 96px; color: #FFFFFF; text-transform: uppercase; line-height: 0.95;
-    max-width: 800px; margin-top: 24px;
+  .hero-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
   }
-  .hero-subtitle {
-    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 20px;
-    color: #DCDCDC; line-height: 1.5; max-width: 500px; margin-top: 24px;
+  .hero-tag { color: #D5501B; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 6px; }
+  .hero-logo { margin-top: 24px; }
+  .hero-logo img { height: 260px; width: auto; display: block; }
+  .hero-tagline {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 28px; color: #FFFFFF; text-transform: uppercase; letter-spacing: 4px;
+    line-height: 1.2; margin-top: 28px; max-width: 720px;
   }
   .btn-orange {
     display: inline-block; background: #D5501B; color: #FFFFFF;
@@ -160,6 +161,47 @@
   }
   .card-list li::before {
     content: ""; width: 8px; height: 8px; background: #D5501B; display: inline-block;
+  }
+
+  /* Listas con íconos de líneas (puertas circulares / aluminio cuadrados) */
+  .lineas-list {
+    margin-top: 24px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 12px;
+  }
+  .linea-item {
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
+  }
+  .linea-icon {
+    width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+    color: #1A1A1A;
+  }
+  .linea-icon-circle {
+    border-radius: 50%; overflow: hidden;
+    width: 72px; height: 72px; display: flex; align-items: center; justify-content: center;
+    background: #FFFFFF;
+  }
+  .linea-icon-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .linea-icon-circle svg { width: 40px; height: 40px; display: block; }
+  .linea-icon-circle.placeholder { border: 2px dashed #8A8A8A; }
+  .linea-icon-square {
+    border: 2px solid #1A1A1A;
+    width: 56px; height: 56px; padding: 8px;
+    display: grid; gap: 4px;
+  }
+  /* Módena = 2 cuadraditos (1x2 horizontal)
+     A30   = 3 cuadraditos (1 arriba full + 2 abajo)
+     A40   = 4 cuadraditos (grid 2x2) */
+  .linea-icon-square.modena { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+  .linea-icon-square.a30 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .linea-icon-square.a40 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+  .linea-icon-square span {
+    background: transparent; border: 1.5px solid #1A1A1A; display: block;
+  }
+  .linea-icon-square.a30 span:first-child { grid-column: 1 / -1; }
+
+  .linea-label {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1px; color: #1A1A1A;
   }
   .card-cta {
     display: inline-block; margin-top: 32px;
@@ -240,10 +282,13 @@
   ========================================================= */
   .section-contacto { background: #FFFFFF; padding: 120px 80px; }
   .contacto-grid {
-    display: grid; grid-template-columns: 60% 40%; gap: 80px;
-    max-width: 1120px; margin: 80px auto 0;
+    max-width: 880px; margin: 80px auto 0;
   }
-  .contacto-blocks { display: flex; flex-direction: column; gap: 32px; }
+  .contacto-blocks {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px 60px;
+    margin-bottom: 40px;
+  }
+  .contacto-actions { display: flex; flex-direction: row; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
   .contacto-block-tag {
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 11px;
     text-transform: uppercase; letter-spacing: 3px; color: #D5501B;
@@ -253,11 +298,18 @@
     color: #1A1A1A; line-height: 1.5; margin-top: 8px;
   }
   .btn-whatsapp {
-    display: inline-block; background: #25D366; color: #FFFFFF;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: #FFFFFF;
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
     text-transform: uppercase; letter-spacing: 2px;
-    padding: 18px 36px; border: none; border-radius: 0; cursor: pointer;
-    margin-top: 40px;
+    padding: 18px 32px; border: none; border-radius: 0; cursor: pointer;
+  }
+  .btn-instagram {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #1A1A1A; color: #FFFFFF;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px;
+    padding: 18px 32px; border: none; border-radius: 0; cursor: pointer;
   }
   .form-box { background: #F0EFED; padding: 40px; }
   .form-title {
@@ -290,7 +342,7 @@
     max-width: 1280px; margin: 0 auto;
   }
   .footer-logo { display: block; }
-  .footer-logo img { height: 32px; width: auto; display: block; }
+  .footer-logo img { height: 44px; width: auto; display: block; }
   .footer-tagline {
     font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px;
     color: #8A8A8A; line-height: 1.6; margin-top: 16px;
@@ -346,7 +398,7 @@
   </a>
   <div class="navbar-menu">
     <div class="nav-item">
-      <a href="#" class="nav-link">Servicios <span class="arrow">▼</span></a>
+      <a href="#" class="nav-link">Productos <span class="arrow">▼</span></a>
       <div class="dropdown">
         <a href="#">Puertas Metálicas</a>
         <a href="#">Carpintería de Aluminio</a>
@@ -367,8 +419,8 @@
 <section class="hero">
   <div class="hero-content">
     <div class="hero-tag">FÁBRICA DE ABERTURAS · 1945</div>
-    <h1 class="hero-title">Más de 75 años fabricando aberturas metálicas</h1>
-    <p class="hero-subtitle">Puertas inyectadas, de seguridad e ignífugas. Carpintería de aluminio a medida.</p>
+    <h1 class="hero-logo"><img src="assets/logos/logo-pametalica-blanco.svg" alt="Pametalica"></h1>
+    <p class="hero-tagline">Más de 75 años fabricando aberturas metálicas</p>
     <a href="#contacto" class="btn-orange">Contactanos →</a>
   </div>
 </section>
@@ -388,15 +440,52 @@
     <article class="card">
       <div class="card-image"><img src="assets/fotos-ia/foto-puerta-metalica.png" alt="Puerta metálica Pametalica"></div>
       <div class="card-body">
-        <span class="card-tag">LÍNEA 01</span>
         <h3 class="card-title">Puertas Metálicas</h3>
-        <p class="card-desc">Puertas de doble chapa inyectadas con poliuretano expandido. Líneas de seguridad, ignífugas, dobles y portones, y económica. Robustez, aislación térmica y acústica.</p>
-        <ul class="card-list">
-          <li>Inyectadas con poliuretano</li>
-          <li>De seguridad</li>
-          <li>Ignífugas</li>
-          <li>Dobles y portones</li>
-        </ul>
+        <p class="card-desc">Puertas de doble chapa inyectadas con poliuretano expandido. Robustez, aislación térmica y acústica para cada aplicación.</p>
+
+        <div class="lineas-list">
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-circle">
+              <img src="assets/iconos-puertas/icono-inyectadas.jpg" alt="Inyectadas">
+            </div>
+            <span class="linea-label">Inyectadas</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-circle">
+              <img src="assets/iconos-puertas/icono-seguridad.jpg" alt="Seguridad">
+            </div>
+            <span class="linea-label">Seguridad</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-circle">
+              <img src="assets/iconos-puertas/icono-ignifugas.jpg" alt="Ignífugas">
+            </div>
+            <span class="linea-label">Ignífugas</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-circle">
+              <img src="assets/iconos-puertas/icono-portones.jpg" alt="Dobles y portones">
+            </div>
+            <span class="linea-label">Dobles y portones</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-circle">
+              <img src="assets/iconos-puertas/icono-economica.jpg" alt="Económica">
+            </div>
+            <span class="linea-label">Económica</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-circle placeholder">
+              <svg viewBox="0 0 40 40" fill="none" stroke="#8A8A8A" stroke-width="2" stroke-linecap="round">
+                <line x1="8" y1="20" x2="32" y2="20"/>
+                <polyline points="12,15 7,20 12,25"/>
+                <polyline points="28,15 33,20 28,25"/>
+              </svg>
+            </div>
+            <span class="linea-label">Extramedida</span>
+          </div>
+        </div>
+
         <a href="#" class="card-cta">Ver puertas metálicas →</a>
       </div>
     </article>
@@ -404,16 +493,30 @@
     <article class="card">
       <div class="card-image"><img src="assets/fotos-ia/foto-carpinteria-aluminio.png" alt="Carpintería de aluminio Pametalica"></div>
       <div class="card-body">
-        <span class="card-tag">LÍNEA 02</span>
         <h3 class="card-title">Carpintería de Aluminio</h3>
-        <p class="card-desc">Aberturas de aluminio a medida en alta, media y baja prestación. Líneas Módena, Vesta y A30 New de Aluar, Herrero y Rotonda. Vidrios float, laminados y DVH.</p>
-        <ul class="card-list">
-          <li>Módena</li>
-          <li>Vesta</li>
-          <li>A30 New</li>
-          <li>Herrero</li>
-          <li>Rotonda</li>
-        </ul>
+        <p class="card-desc">Aberturas de aluminio a medida en alta y media prestación. Sistemas Aluar con vidrios float, laminados y DVH.</p>
+
+        <div class="lineas-list" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-square modena">
+              <span></span><span></span>
+            </div>
+            <span class="linea-label">Módena</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-square a30">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="linea-label">A30</span>
+          </div>
+          <div class="linea-item">
+            <div class="linea-icon linea-icon-square a40">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <span class="linea-label">A40</span>
+          </div>
+        </div>
+
         <a href="#" class="card-cta">Ver carpintería de aluminio →</a>
       </div>
     </article>
@@ -565,38 +668,32 @@
   </div>
 
   <div class="contacto-grid">
-    <div>
-      <div class="contacto-blocks">
-        <div>
-          <div class="contacto-block-tag">DIRECCIÓN</div>
-          <div class="contacto-block-info">Belgrano 3174, Munro<br>Provincia de Buenos Aires, Argentina</div>
-        </div>
-        <div>
-          <div class="contacto-block-tag">TELÉFONO / FAX</div>
-          <div class="contacto-block-info">011 4762-3000</div>
-        </div>
-        <div>
-          <div class="contacto-block-tag">WHATSAPP</div>
-          <div class="contacto-block-info">11 2690-9379</div>
-        </div>
-        <div>
-          <div class="contacto-block-tag">EMAIL</div>
-          <div class="contacto-block-info">pametalica@pametalica.com.ar</div>
-        </div>
+    <div class="contacto-blocks">
+      <div>
+        <div class="contacto-block-tag">DIRECCIÓN</div>
+        <div class="contacto-block-info">Belgrano 3174, Munro<br>Provincia de Buenos Aires, Argentina</div>
       </div>
-      <button class="btn-whatsapp">Escribir por WhatsApp</button>
+      <div>
+        <div class="contacto-block-tag">TELÉFONO / FAX</div>
+        <div class="contacto-block-info">011 4762-3000</div>
+      </div>
+      <div>
+        <div class="contacto-block-tag">WHATSAPP</div>
+        <div class="contacto-block-info">11 2690-9379</div>
+      </div>
+      <div>
+        <div class="contacto-block-tag">EMAIL</div>
+        <div class="contacto-block-info">pametalica@pametalica.com.ar</div>
+      </div>
+      <div>
+        <div class="contacto-block-tag">INSTAGRAM</div>
+        <div class="contacto-block-info"><a href="https://instagram.com/pametalica_aberturas/" target="_blank" rel="noopener" style="color:#1A1A1A;">@pametalica_aberturas</a></div>
+      </div>
     </div>
 
-    <div class="form-box">
-      <div class="form-title">Envianos tu consulta</div>
-      <div class="form-fields">
-        <input type="text" placeholder="Nombre completo">
-        <input type="email" placeholder="Email">
-        <input type="tel" placeholder="Teléfono">
-        <textarea placeholder="Tu consulta"></textarea>
-      </div>
-      <button class="form-submit">Enviar consulta</button>
-      <p class="form-note">Te respondemos en menos de 24 horas hábiles.</p>
+    <div class="contacto-actions">
+      <a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="btn-whatsapp">Escribir por WhatsApp</a>
+      <a href="https://instagram.com/pametalica_aberturas/" target="_blank" rel="noopener" class="btn-instagram">Seguinos en Instagram</a>
     </div>
   </div>
 </section>
@@ -611,7 +708,7 @@
       <p class="footer-tagline">Fábrica de aberturas metálicas y carpintería de aluminio. Desde 1945.</p>
     </div>
     <div>
-      <div class="footer-col-title">SERVICIOS</div>
+      <div class="footer-col-title">PRODUCTOS</div>
       <ul class="footer-list">
         <li><a href="#">Puertas Metálicas</a></li>
         <li><a href="#">Carpintería de Aluminio</a></li>
@@ -630,6 +727,7 @@
         <li>011 4762-3000</li>
         <li>WhatsApp 11 2690-9379</li>
         <li>pametalica@pametalica.com.ar</li>
+        <li>@pametalica_aberturas</li>
         <li>Belgrano 3174, Munro</li>
       </ul>
     </div>
