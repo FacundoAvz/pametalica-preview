@@ -85,29 +85,23 @@
      BLOQUE 2 — HERO
   ========================================================= */
   .hero {
-    position: relative; min-height: 600px; height: 75vh;
-    background-image: url('assets/home/camion-banner.png');
+    position: relative; min-height: 480px; height: 62vh;
+    background-image: url('assets/home/ventanas-banner.png');
     background-size: cover; background-position: center; background-repeat: no-repeat;
     display: flex; align-items: center; justify-content: center;
     padding: 0 80px; text-align: center;
   }
   .hero::before {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.65) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.78) 100%);
     z-index: 1;
   }
   .hero-content {
     position: relative; z-index: 2;
     display: flex; flex-direction: column; align-items: center;
   }
-  .hero-tag { color: #D5501B; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 6px; }
-  .hero-logo { margin-top: 24px; }
-  .hero-logo img { height: 260px; width: auto; display: block; }
-  .hero-tagline {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    font-size: 28px; color: #FFFFFF; text-transform: uppercase; letter-spacing: 4px;
-    line-height: 1.2; margin-top: 28px; max-width: 720px;
-  }
+  .hero-logo { margin: 0; }
+  .hero-logo img { height: 240px; width: auto; display: block; }
   .btn-orange {
     display: inline-block; background: #D5501B; color: #FFFFFF;
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
@@ -120,7 +114,7 @@
   /* =========================================================
      BLOQUE 3 — SERVICIOS
   ========================================================= */
-  .section-servicios { background: #FFFFFF; padding: 120px 80px; }
+  .section-servicios { background: #FFFFFF; padding: 80px 80px 100px; }
   .section-header { text-align: center; max-width: 720px; margin: 0 auto; }
   .section-title {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
@@ -134,7 +128,7 @@
 
   .cards-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-    max-width: 1120px; margin: 80px auto 0;
+    max-width: 1120px; margin: 0 auto;
   }
   .card { border: 1px solid #DCDCDC; background: #FFFFFF; }
   .card-image {
@@ -418,10 +412,8 @@
 ============================================ -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">FÁBRICA DE ABERTURAS · 1945</div>
     <h1 class="hero-logo"><img src="assets/logos/logo-pametalica-blanco.svg" alt="Pametalica"></h1>
-    <p class="hero-tagline">Más de 75 años fabricando aberturas metálicas</p>
-    <a href="#contacto" class="btn-orange">Contactanos →</a>
+    <a href="#contacto" class="btn-orange" style="margin-top: 36px;">Contactanos →</a>
   </div>
 </section>
 
@@ -429,13 +421,6 @@
      BLOQUE 3 — SERVICIOS
 ============================================ -->
 <section class="section-servicios">
-  <div class="section-header">
-    <span class="tag-orange">NUESTRAS LÍNEAS</span>
-    <h2 class="section-title">Qué fabricamos</h2>
-    <hr class="divider-orange">
-    <p class="section-subtitle">Dos especialidades. Una misma exigencia.</p>
-  </div>
-
   <div class="cards-grid">
     <article class="card">
       <div class="card-image"><img src="assets/fotos-ia/foto-puerta-metalica.png" alt="Puerta metálica Pametalica"></div>
