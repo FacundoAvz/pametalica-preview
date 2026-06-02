@@ -193,20 +193,10 @@
   .linea-icon-circle svg { width: 40px; height: 40px; display: block; }
   .linea-icon-circle.placeholder { border: 2px dashed #8A8A8A; }
   .linea-icon-square {
-    border: 2px solid #1A1A1A;
-    width: 56px; height: 56px; padding: 8px;
-    display: grid; gap: 4px;
+    width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
   }
-  /* Módena = 2 cuadraditos (1x2 horizontal)
-     A30   = 3 cuadraditos (1 arriba full + 2 abajo)
-     A40   = 4 cuadraditos (grid 2x2) */
-  .linea-icon-square.modena { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
-  .linea-icon-square.a30 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-  .linea-icon-square.a40 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-  .linea-icon-square span {
-    background: transparent; border: 1.5px solid #1A1A1A; display: block;
-  }
-  .linea-icon-square.a30 span:first-child { grid-column: 1 / -1; }
+  .linea-icon-square img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
   .linea-label {
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
@@ -502,20 +492,20 @@
 
         <div class="lineas-list" style="grid-template-columns: repeat(3, 1fr);">
           <div class="linea-item">
-            <div class="linea-icon linea-icon-square modena">
-              <span></span><span></span>
+            <div class="linea-icon linea-icon-square">
+              <img src="assets/iconos-aluminio/icono-modena.png" alt="Módena">
             </div>
             <span class="linea-label">Módena</span>
           </div>
           <div class="linea-item">
-            <div class="linea-icon linea-icon-square a30">
-              <span></span><span></span><span></span>
+            <div class="linea-icon linea-icon-square">
+              <img src="assets/iconos-aluminio/icono-a30.png" alt="A30">
             </div>
             <span class="linea-label">A30</span>
           </div>
           <div class="linea-item">
-            <div class="linea-icon linea-icon-square a40">
-              <span></span><span></span><span></span><span></span>
+            <div class="linea-icon linea-icon-square">
+              <img src="assets/iconos-aluminio/icono-a40.png" alt="A40">
             </div>
             <span class="linea-label">A40</span>
           </div>
