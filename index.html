@@ -297,12 +297,13 @@
     color: #1A1A1A; line-height: 1.5; margin-top: 8px;
   }
   .btn-whatsapp {
-    display: inline-flex; align-items: center; gap: 10px;
+    display: inline-flex; align-items: center; gap: 12px;
     background: #25D366; color: #FFFFFF;
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
     text-transform: uppercase; letter-spacing: 2px;
     padding: 18px 32px; border: none; border-radius: 0; cursor: pointer;
   }
+  .btn-whatsapp img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
   .btn-instagram {
     display: inline-flex; align-items: center; gap: 10px;
     background: #1A1A1A; color: #FFFFFF;
@@ -377,12 +378,12 @@
   .float-wa {
     position: fixed; bottom: 24px; right: 24px;
     width: 60px; height: 60px; border-radius: 50%;
-    background: #25D366; color: #FFFFFF;
+    background: #25D366;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 28px;
     z-index: 9999; cursor: pointer;
   }
+  .float-wa img { width: 32px; height: 32px; display: block; filter: brightness(0) invert(1); }
 </style>
 </head>
 <body>
@@ -682,7 +683,7 @@
     </div>
 
     <div class="contacto-actions">
-      <a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="btn-whatsapp">Escribir por WhatsApp</a>
+      <a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="btn-whatsapp"><img src="assets/iconos-ui/icono-whatsapp.png" alt="">Escribir por WhatsApp</a>
       <a href="https://instagram.com/pametalica_aberturas/" target="_blank" rel="noopener" class="btn-instagram">Seguinos en Instagram</a>
     </div>
   </div>
@@ -731,7 +732,7 @@
 <!-- ============================================
      BOTÓN FLOTANTE WHATSAPP
 ============================================ -->
-<a href="#" class="float-wa" aria-label="WhatsApp">W</a>
+<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><img src="assets/iconos-ui/icono-whatsapp.png" alt="WhatsApp"></a>
 
 <script>
   (function() {
