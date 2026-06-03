@@ -193,7 +193,7 @@
   .linea-icon-circle svg { width: 40px; height: 40px; display: block; }
   .linea-icon-circle.placeholder { border: 2px dashed #8A8A8A; }
   .linea-icon-square {
-    width: 72px; height: 72px;
+    width: 76px; height: 76px;
     display: flex; align-items: center; justify-content: center;
   }
   .linea-icon-square img { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -201,6 +201,17 @@
   .linea-label {
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
     text-transform: uppercase; letter-spacing: 1px; color: #1A1A1A;
+  }
+
+  /* Sub-sección dentro de card (ej: Vidrios disponibles) */
+  .sub-section {
+    margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid #DCDCDC;
+  }
+  .sub-section-title {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 3px; color: #5A5A5A;
+    margin-bottom: 16px;
   }
   .card-cta {
     display: inline-block; margin-top: 32px;
@@ -303,14 +314,15 @@
     text-transform: uppercase; letter-spacing: 2px;
     padding: 18px 32px; border: none; border-radius: 0; cursor: pointer;
   }
-  .btn-whatsapp img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
+  .btn-whatsapp img { width: 22px; height: 22px; display: block; }
   .btn-instagram {
-    display: inline-flex; align-items: center; gap: 10px;
+    display: inline-flex; align-items: center; gap: 12px;
     background: #1A1A1A; color: #FFFFFF;
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
     text-transform: uppercase; letter-spacing: 2px;
     padding: 18px 32px; border: none; border-radius: 0; cursor: pointer;
   }
+  .btn-instagram img { width: 22px; height: 22px; display: block; }
   .form-box { background: #F0EFED; padding: 40px; }
   .form-title {
     font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
@@ -377,13 +389,14 @@
   ========================================================= */
   .float-wa {
     position: fixed; bottom: 24px; right: 24px;
-    width: 60px; height: 60px; border-radius: 50%;
-    background: #25D366;
+    width: 64px; height: 64px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     z-index: 9999; cursor: pointer;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+    transition: transform 0.2s ease;
   }
-  .float-wa img { width: 32px; height: 32px; display: block; filter: brightness(0) invert(1); }
+  .float-wa:hover { transform: scale(1.06); }
+  .float-wa img { width: 64px; height: 64px; display: block; }
 </style>
 </head>
 <body>
@@ -505,6 +518,36 @@
               <img src="assets/iconos-aluminio/icono-a40.png" alt="A40">
             </div>
             <span class="linea-label">A40</span>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <div class="sub-section-title">Tipos de vidrios disponibles</div>
+          <div class="lineas-list" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="linea-item">
+              <div class="linea-icon linea-icon-square">
+                <img src="assets/iconos-vidrios/icono-simple.png" alt="Simple">
+              </div>
+              <span class="linea-label">Simple</span>
+            </div>
+            <div class="linea-item">
+              <div class="linea-icon linea-icon-square">
+                <img src="assets/iconos-vidrios/icono-laminado.png" alt="Laminado">
+              </div>
+              <span class="linea-label">Laminado</span>
+            </div>
+            <div class="linea-item">
+              <div class="linea-icon linea-icon-square">
+                <img src="assets/iconos-vidrios/icono-templado.png" alt="Templado">
+              </div>
+              <span class="linea-label">Templado</span>
+            </div>
+            <div class="linea-item">
+              <div class="linea-icon linea-icon-square">
+                <img src="assets/iconos-vidrios/icono-dvh.png" alt="DVH">
+              </div>
+              <span class="linea-label">DVH</span>
+            </div>
           </div>
         </div>
 
@@ -683,8 +726,8 @@
     </div>
 
     <div class="contacto-actions">
-      <a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="btn-whatsapp"><img src="assets/iconos-ui/icono-whatsapp.png" alt="">Escribir por WhatsApp</a>
-      <a href="https://instagram.com/pametalica_aberturas/" target="_blank" rel="noopener" class="btn-instagram">Seguinos en Instagram</a>
+      <a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="btn-whatsapp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="">Escribir por WhatsApp</a>
+      <a href="https://instagram.com/pametalica_aberturas/" target="_blank" rel="noopener" class="btn-instagram"><img src="assets/iconos-ui/instagram-logo.svg" alt="">Seguinos en Instagram</a>
     </div>
   </div>
 </section>
@@ -732,7 +775,7 @@
 <!-- ============================================
      BOTÓN FLOTANTE WHATSAPP
 ============================================ -->
-<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><img src="assets/iconos-ui/icono-whatsapp.png" alt="WhatsApp"></a>
+<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="WhatsApp"></a>
 
 <script>
   (function() {
