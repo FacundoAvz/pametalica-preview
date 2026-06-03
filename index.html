@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pametalica — Referencia Visual Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,6 +90,44 @@
     transition: color 0.15s ease;
   }
   .dropdown a:hover { color: #D5501B; }
+
+  /* Hamburger button (oculto en desktop) */
+  .hamburger {
+    display: none; background: transparent; border: none; cursor: pointer;
+    width: 40px; height: 40px; padding: 8px;
+    flex-direction: column; justify-content: space-between;
+  }
+  .hamburger span {
+    display: block; width: 100%; height: 2px; background: #FFFFFF;
+    transition: background 0.3s ease;
+  }
+  .navbar.scrolled .hamburger span { background: #1A1A1A; }
+
+  /* Mobile menu overlay (oculto en desktop) */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 200;
+    background: #1A1A1A;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .mobile-menu.open { opacity: 1; visibility: visible; }
+  .mobile-menu-close {
+    position: absolute; top: 24px; right: 24px;
+    background: transparent; border: none; cursor: pointer;
+    width: 44px; height: 44px;
+    font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 40px;
+    color: #FFFFFF; line-height: 1;
+  }
+  .mobile-menu-inner {
+    display: flex; flex-direction: column; align-items: center; gap: 28px;
+    padding: 0 24px;
+  }
+  .mobile-menu-link {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 32px; color: #FFFFFF; text-transform: uppercase; letter-spacing: 2px;
+    text-align: center;
+  }
+  .mobile-menu-link:hover { color: #D5501B; }
 
   /* =========================================================
      BLOQUE 2 — HERO
@@ -397,6 +436,115 @@
   }
   .float-wa:hover { transform: scale(1.06); }
   .float-wa img { width: 64px; height: 64px; display: block; }
+
+  /* Float-WA: oculto por defecto en mobile, aparece con scroll via JS */
+  .float-wa.hidden-initial { opacity: 0; visibility: hidden; transform: translateY(20px); }
+  .float-wa.visible-scroll { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 0.3s ease, transform 0.3s ease; }
+
+  /* =========================================================
+     RESPONSIVE — TABLET (≤ 1024px)
+  ========================================================= */
+  @media (max-width: 1024px) {
+    .navbar { padding: 20px 32px; }
+    .navbar.scrolled { padding: 14px 32px; }
+    .hero { padding: 0 32px; min-height: 460px; height: 60vh; }
+    .hero-logo img { height: 200px; }
+    .hero-tagline { font-size: 22px; letter-spacing: 4px; }
+
+    .section-servicios { padding: 60px 32px 80px; }
+    .cards-grid { grid-template-columns: 1fr; gap: 32px; }
+    .lineas-list { grid-template-columns: repeat(3, 1fr) !important; }
+
+    .section-pilares { padding: 80px 32px; }
+    .pilares-grid { grid-template-columns: repeat(2, 1fr); gap: 48px 32px; }
+
+    .section-nosotros { height: auto; padding: 80px 0; }
+    .nosotros-container { flex-direction: column; padding: 0 32px; gap: 48px; }
+    .nosotros-left, .nosotros-right { flex: 1 1 100%; width: 100%; }
+    .nosotros-75 { font-size: 360px; right: -40px; }
+    .nosotros-title { font-size: 48px; }
+
+    .section-contacto { padding: 80px 32px 100px; }
+    .contacto-blocks { grid-template-columns: 1fr 1fr; gap: 32px 40px; }
+
+    .footer { padding: 64px 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  /* =========================================================
+     RESPONSIVE — MOBILE (≤ 768px)
+  ========================================================= */
+  @media (max-width: 768px) {
+    /* Navbar */
+    .navbar { padding: 16px 20px; }
+    .navbar.scrolled { padding: 12px 20px; }
+    .navbar-brand .brand-text { font-size: 11px; letter-spacing: 2px; }
+    .navbar-brand .brand-logo { height: 36px; }
+    .navbar-menu { display: none; }
+    .hamburger { display: flex; }
+
+    /* Hero */
+    .hero { padding: 0 24px; min-height: 420px; height: 56vh; }
+    .hero-logo img { height: 150px; }
+    .hero-tagline { font-size: 16px; letter-spacing: 3px; margin-top: 24px; max-width: 320px; }
+
+    /* Cards de productos */
+    .section-servicios { padding: 40px 20px 60px; }
+    .card-header { padding: 24px 24px 16px; }
+    .card-title { font-size: 28px; }
+    .card-image { height: 220px; }
+    .card-body { padding: 24px; }
+    .card-desc { font-size: 14px; }
+
+    .lineas-list { grid-template-columns: repeat(3, 1fr) !important; gap: 18px 10px; }
+    .linea-icon-circle, .linea-icon-square { width: 60px; height: 60px; }
+    .linea-label { font-size: 10px; letter-spacing: 0.5px; }
+    .sub-section { margin-top: 24px; padding-top: 18px; }
+    .sub-section-title { font-size: 10px; letter-spacing: 2px; }
+
+    /* Pilares */
+    .section-pilares { padding: 60px 24px; }
+    .pilares-grid { grid-template-columns: 1fr 1fr; gap: 36px 20px; }
+    .pilar-icon, .pilar-icon svg { width: 56px; height: 56px; }
+    .pilar-title { font-size: 16px; margin-top: 16px; }
+    .pilar-desc { font-size: 13px; }
+
+    /* Nosotros */
+    .section-nosotros { padding: 60px 0; }
+    .nosotros-container { padding: 0 24px; gap: 32px; }
+    .nosotros-75 { font-size: 260px; right: -20px; opacity: 0.6; }
+    .nosotros-title { font-size: 36px; line-height: 1; }
+    .nosotros-text { font-size: 15px; }
+    .nosotros-image { height: 280px; }
+
+    /* Contacto */
+    .section-contacto { padding: 60px 20px 80px; }
+    .section-title { font-size: 36px; }
+    .contacto-grid { margin-top: 48px; }
+    .contacto-blocks { grid-template-columns: 1fr; gap: 24px; }
+    .contacto-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+    .btn-whatsapp, .btn-instagram { width: 100%; justify-content: center; padding: 16px 24px; font-size: 13px; }
+
+    /* Footer */
+    .footer { padding: 48px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; text-align: left; }
+    .footer-bottom { margin-top: 40px; padding-top: 24px; font-size: 11px; }
+
+    /* Float WhatsApp: oculto por defecto, aparece con scroll */
+    .float-wa { bottom: 16px; right: 16px; width: 56px; height: 56px; }
+    .float-wa img { width: 56px; height: 56px; }
+  }
+
+  /* =========================================================
+     RESPONSIVE — MOBILE CHICO (≤ 380px)
+  ========================================================= */
+  @media (max-width: 380px) {
+    .hero-logo img { height: 130px; }
+    .hero-tagline { font-size: 14px; }
+    .lineas-list { grid-template-columns: repeat(2, 1fr) !important; }
+    .pilares-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -424,7 +572,21 @@
       <a href="#contacto" class="nav-link">Contacto</a>
     </div>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">×</button>
+  <div class="mobile-menu-inner">
+    <a href="#" class="mobile-menu-link">Puertas Metálicas</a>
+    <a href="#" class="mobile-menu-link">Carpintería de Aluminio</a>
+    <a href="#" class="mobile-menu-link">Nosotros</a>
+    <a href="#contacto" class="mobile-menu-link">Contacto</a>
+  </div>
+</div>
 
 <!-- ============================================
      BLOQUE 2 — HERO
@@ -775,20 +937,58 @@
 <!-- ============================================
      BOTÓN FLOTANTE WHATSAPP
 ============================================ -->
-<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="WhatsApp"></a>
+<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa hidden-initial" aria-label="WhatsApp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="WhatsApp"></a>
 
 <script>
   (function() {
     var navbar = document.getElementById('navbar');
+    var floatWa = document.querySelector('.float-wa');
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileMenuClose = document.getElementById('mobileMenuClose');
+    var mobileLinks = document.querySelectorAll('.mobile-menu-link');
+
+    // -- Navbar scroll state + Float-WA show on scroll (only mobile) --
+    function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+
     function onScroll() {
-      if (window.scrollY > 80) {
-        navbar.classList.add('scrolled');
+      var y = window.scrollY;
+      if (y > 80) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+
+      // Float WhatsApp: solo aparece después del scroll en MOBILE
+      if (isMobile()) {
+        if (y > 300) {
+          floatWa.classList.add('visible-scroll');
+          floatWa.classList.remove('hidden-initial');
+        } else {
+          floatWa.classList.add('hidden-initial');
+          floatWa.classList.remove('visible-scroll');
+        }
       } else {
-        navbar.classList.remove('scrolled');
+        // Desktop: siempre visible
+        floatWa.classList.remove('hidden-initial');
+        floatWa.classList.remove('visible-scroll');
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     onScroll();
+
+    // -- Mobile hamburger menu --
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', openMenu);
+    mobileMenuClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
   })();
 </script>
 
