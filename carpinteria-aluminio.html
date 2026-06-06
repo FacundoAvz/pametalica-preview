@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carpintería de Aluminio — Pametalica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ========== BASE ========== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: #FFFFFF; color: #1A1A1A; font-family: 'Barlow', sans-serif; font-weight: 400; line-height: 1.6; }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  button, input, textarea { font-family: inherit; }
+
+  /* ========== NAVBAR ========== */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 80px; background: #1A1A1A;
+    transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  }
+  .navbar.scrolled {
+    background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 16px 80px;
+  }
+  .navbar-brand { display: flex; align-items: center; height: 52px; }
+  .navbar-brand .brand-text {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 13px;
+    color: #FFFFFF; text-transform: uppercase; letter-spacing: 4px;
+    transition: opacity 0.3s ease;
+  }
+  .navbar-brand .brand-logo {
+    height: 48px; width: auto; display: block; opacity: 0; position: absolute;
+    transition: opacity 0.3s ease;
+  }
+  .navbar.scrolled .navbar-brand .brand-text { opacity: 0; visibility: hidden; }
+  .navbar.scrolled .navbar-brand .brand-logo { opacity: 1; position: relative; }
+
+  .navbar-menu { display: flex; gap: 40px; }
+  .nav-item { position: relative; }
+  .navbar-menu .nav-link {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    color: #FFFFFF; text-transform: uppercase; letter-spacing: 1.5px;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.3s ease; padding: 8px 0;
+  }
+  .navbar.scrolled .navbar-menu .nav-link { color: #1A1A1A; }
+  .navbar-menu .nav-link .arrow { font-size: 9px; }
+  .dropdown {
+    position: absolute; top: 100%; left: 0; background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12); padding: 16px 0; min-width: 240px;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown a {
+    display: block; padding: 12px 24px; font-family: 'Barlow', sans-serif;
+    font-weight: 500; font-size: 14px; color: #1A1A1A;
+    transition: color 0.15s ease;
+  }
+  .dropdown a:hover { color: #D5501B; }
+
+  .hamburger {
+    display: none; background: transparent; border: none; cursor: pointer;
+    width: 40px; height: 40px; padding: 8px;
+    flex-direction: column; justify-content: space-between;
+  }
+  .hamburger span { display: block; width: 100%; height: 2px; background: #FFFFFF; transition: background 0.3s ease; }
+  .navbar.scrolled .hamburger span { background: #1A1A1A; }
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 200; background: #1A1A1A;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .mobile-menu.open { opacity: 1; visibility: visible; }
+  .mobile-menu-close {
+    position: absolute; top: 24px; right: 24px; background: transparent; border: none;
+    cursor: pointer; width: 44px; height: 44px;
+    font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 40px;
+    color: #FFFFFF; line-height: 1;
+  }
+  .mobile-menu-inner { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 0 24px; }
+  .mobile-menu-link {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 32px; color: #FFFFFF; text-transform: uppercase; letter-spacing: 2px;
+    text-align: center;
+  }
+  .mobile-menu-link:hover { color: #D5501B; }
+
+  /* ========== HERO ========== */
+  .hero-interior {
+    position: relative; min-height: 460px; height: 56vh;
+    background: #1A1A1A; /* placeholder hasta tener foto real */
+    background-image: linear-gradient(135deg, #2E2E2E 0%, #1A1A1A 100%);
+    display: flex; align-items: center; padding: 0 80px;
+    overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.08;
+    background-image:
+      linear-gradient(90deg, #FFFFFF 1px, transparent 1px),
+      linear-gradient(180deg, #FFFFFF 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-interior-content { position: relative; z-index: 2; max-width: 720px; padding-top: 60px; }
+  .breadcrumb {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    color: #D5501B; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 24px;
+  }
+  .breadcrumb a { color: #D5501B; opacity: 0.7; }
+  .breadcrumb span { color: #FFFFFF; opacity: 0.5; margin: 0 8px; }
+  .hero-interior-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 80px; color: #FFFFFF; text-transform: uppercase; line-height: 0.95;
+  }
+  .hero-interior-bajada {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 18px;
+    color: #DCDCDC; line-height: 1.6; margin-top: 24px; max-width: 560px;
+  }
+
+  /* ========== INTRO ALUAR ========== */
+  .intro-aluar {
+    background: #F0EFED; padding: 80px 80px;
+  }
+  .intro-aluar-inner {
+    max-width: 960px; margin: 0 auto; text-align: center;
+  }
+  .intro-aluar-tag {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 4px; color: #D5501B;
+  }
+  .intro-aluar-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 48px; text-transform: uppercase; color: #1A1A1A; line-height: 1.05;
+    margin-top: 12px;
+  }
+  .intro-aluar-text {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 17px;
+    line-height: 1.8; color: #5A5A5A; margin-top: 24px;
+  }
+
+  /* ========== INDICE SISTEMAS ========== */
+  .sistemas-nav {
+    position: sticky; top: 0; z-index: 50;
+    background: #FFFFFF; border-bottom: 1px solid #DCDCDC;
+  }
+  .sistemas-nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 16px 80px;
+    display: flex; justify-content: center; align-items: center; gap: 56px;
+  }
+  .sistemas-nav-item {
+    display: flex; align-items: center; gap: 12px; padding: 8px 4px; cursor: pointer;
+  }
+  .sistemas-nav-item img { width: 40px; height: 40px; }
+  .sistemas-nav-item .nav-label {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 18px; text-transform: uppercase; letter-spacing: 1px; color: #1A1A1A;
+  }
+
+  /* ========== SECCION SISTEMA ========== */
+  .seccion-sistema { padding: 100px 80px; }
+  .seccion-sistema.dark { background: #1A1A1A; color: #DCDCDC; }
+  .seccion-sistema.alt { background: #F0EFED; }
+
+  .sistema-layout {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .sistema-info { }
+  .sistema-icon {
+    width: 96px; height: 96px; margin-bottom: 24px;
+  }
+  .sistema-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .sistema-tag {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 4px; color: #D5501B;
+  }
+  .sistema-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 72px; text-transform: uppercase; line-height: 0.95; color: #1A1A1A;
+    margin-top: 8px;
+  }
+  .seccion-sistema.dark .sistema-title { color: #FFFFFF; }
+  .sistema-subtitle {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 18px;
+    color: #D5501B; text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;
+  }
+  .sistema-desc {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 16px;
+    line-height: 1.8; color: #5A5A5A; margin-top: 20px;
+  }
+  .seccion-sistema.dark .sistema-desc { color: #DCDCDC; }
+
+  .sistema-features { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .sistema-features li {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 15px; color: #1A1A1A;
+  }
+  .seccion-sistema.dark .sistema-features li { color: #DCDCDC; }
+  .sistema-features li::before {
+    content: ""; width: 6px; height: 6px; background: #D5501B; display: inline-block;
+  }
+
+  .sistema-img {
+    background: #DCDCDC; aspect-ratio: 4 / 5; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    color: #8A8A8A; font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px;
+    border: 1px dashed #B8B8B8;
+    background-image:
+      repeating-linear-gradient(45deg, #E5E4E1 0 12px, #DCDCDC 12px 24px);
+  }
+  .seccion-sistema.dark .sistema-img {
+    background: #2E2E2E; border-color: #4A4A4A; color: #5A5A5A;
+    background-image: repeating-linear-gradient(45deg, #2E2E2E 0 12px, #353535 12px 24px);
+  }
+  .sistema-img-content { text-align: center; padding: 24px; }
+  .sistema-img-content .ph-num {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 64px;
+    color: #B8B8B8; line-height: 1; margin-bottom: 12px;
+  }
+  .seccion-sistema.dark .sistema-img-content .ph-num { color: #4A4A4A; }
+
+  /* ========== MATRIZ COMPATIBILIDAD ========== */
+  .section-matriz { background: #FFFFFF; padding: 100px 80px; }
+  .matriz-header { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  .section-tag-top {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 4px; color: #D5501B;
+  }
+  .section-title-h2 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 56px; color: #1A1A1A; text-transform: uppercase; line-height: 1; margin-top: 12px;
+  }
+  .section-divider { width: 48px; height: 3px; background: #D5501B; border: none; margin: 24px auto; }
+  .section-subtitle-p {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 17px; color: #5A5A5A;
+  }
+
+  .matriz-table {
+    max-width: 1120px; margin: 0 auto;
+    border-collapse: separate; border-spacing: 0;
+    width: 100%; border: 1px solid #DCDCDC;
+  }
+  .matriz-table thead th {
+    background: #1A1A1A; color: #FFFFFF;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 20px; text-transform: uppercase; letter-spacing: 1px;
+    padding: 20px 16px; text-align: center;
+  }
+  .matriz-table thead th:first-child {
+    text-align: left; font-size: 12px; letter-spacing: 3px;
+    color: #8A8A8A; font-weight: 600; font-family: 'Barlow', sans-serif;
+    padding-left: 24px;
+  }
+  .matriz-table tbody tr:nth-child(even) { background: #F0EFED; }
+  .matriz-table tbody td {
+    padding: 16px; border-top: 1px solid #DCDCDC;
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 1px; color: #1A1A1A;
+    text-align: center;
+  }
+  .matriz-table tbody td:first-child { text-align: left; padding-left: 24px; }
+  .check-yes { color: #25A85A; font-weight: 900; font-size: 18px; }
+  .check-no { color: #C8C8C8; font-weight: 400; font-size: 18px; }
+
+  /* ========== VIDRIOS ========== */
+  .section-vidrios { background: #F0EFED; padding: 100px 80px; }
+  .vidrios-grid {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .vidrio-card {
+    background: #FFFFFF; padding: 32px 24px; text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .vidrio-icon { width: 100px; height: 100px; }
+  .vidrio-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .vidrio-name {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 28px; text-transform: uppercase; color: #1A1A1A; margin-top: 16px;
+  }
+  .vidrio-desc {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 14px;
+    line-height: 1.6; color: #5A5A5A; margin-top: 12px;
+  }
+
+  /* ========== ROTURA PUENTE TERMICO ========== */
+  .section-rpt { background: #1A1A1A; color: #DCDCDC; padding: 100px 80px; }
+  .rpt-layout {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .rpt-tag {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 4px; color: #D5501B;
+  }
+  .rpt-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 56px; text-transform: uppercase; line-height: 1; color: #FFFFFF;
+    margin-top: 12px;
+  }
+  .rpt-divider { width: 48px; height: 3px; background: #D5501B; border: none; margin: 24px 0; }
+  .rpt-text {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 16px;
+    line-height: 1.8; color: #DCDCDC; margin-bottom: 16px;
+  }
+  .rpt-availability {
+    display: flex; gap: 12px; margin-top: 24px;
+  }
+  .rpt-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px; background: #2E2E2E; border: 1px solid #3A3A3A;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px;
+    color: #FFFFFF; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .rpt-badge.disponible::before { content: "✓"; color: #25A85A; }
+  .rpt-badge.opcional::before { content: "○"; color: #D5501B; }
+
+  .rpt-diagram {
+    background: #2E2E2E; border: 1px solid #3A3A3A; padding: 32px;
+    aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .rpt-diagram-svg { width: 100%; height: 100%; max-width: 400px; }
+
+  /* ========== CTA ========== */
+  .section-cta {
+    background: #D5501B; color: #FFFFFF; padding: 80px 80px; text-align: center;
+  }
+  .cta-title {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 48px; text-transform: uppercase; line-height: 1.05;
+  }
+  .cta-text {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 17px;
+    line-height: 1.6; max-width: 600px; margin: 16px auto 32px;
+  }
+  .btn-white {
+    display: inline-block; background: #FFFFFF; color: #D5501B;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px;
+    padding: 18px 36px; border: none; border-radius: 0; cursor: pointer;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer { background: #1A1A1A; padding: 80px 80px; color: #DCDCDC; }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 60px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .footer-logo img { height: 44px; width: auto; display: block; }
+  .footer-tagline {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px;
+    color: #8A8A8A; line-height: 1.6; margin-top: 16px;
+  }
+  .footer-col-title {
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    color: #FFFFFF; text-transform: uppercase; letter-spacing: 3px;
+  }
+  .footer-list { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .footer-list li, .footer-list a {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 14px;
+    color: #DCDCDC; line-height: 1.8;
+  }
+  .footer-info { margin-top: 16px; }
+  .footer-info li {
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px;
+    color: #DCDCDC; line-height: 1.8;
+  }
+  .footer-bottom {
+    max-width: 1280px; margin: 60px auto 0; padding-top: 32px;
+    border-top: 1px solid #2E2E2E;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy, .footer-social { font-family: 'Barlow', sans-serif; font-size: 12px; color: #8A8A8A; }
+
+  /* ========== FLOAT WA ========== */
+  .float-wa {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; cursor: pointer;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+    transition: transform 0.2s ease;
+  }
+  .float-wa:hover { transform: scale(1.06); }
+  .float-wa img { width: 64px; height: 64px; }
+  .float-wa.hidden-initial { opacity: 0; visibility: hidden; transform: translateY(20px); }
+  .float-wa.visible-scroll { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 0.3s ease, transform 0.3s ease; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .navbar { padding: 20px 32px; }
+    .navbar.scrolled { padding: 14px 32px; }
+    .hero-interior, .intro-aluar, .seccion-sistema, .section-matriz, .section-vidrios, .section-rpt, .section-cta { padding-left: 32px; padding-right: 32px; }
+    .hero-interior-title { font-size: 60px; }
+    .sistemas-nav-inner { padding: 16px 24px; gap: 32px; }
+    .sistema-layout, .rpt-layout { grid-template-columns: 1fr; gap: 48px; }
+    .sistema-title { font-size: 56px; }
+    .vidrios-grid { grid-template-columns: 1fr 1fr; }
+    .matriz-table thead th { font-size: 16px; }
+    .footer { padding: 64px 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  @media (max-width: 768px) {
+    .navbar { padding: 16px 20px; }
+    .navbar.scrolled { padding: 12px 20px; }
+    .navbar-brand .brand-text { font-size: 11px; letter-spacing: 2px; }
+    .navbar-brand .brand-logo { height: 36px; }
+    .navbar-menu { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-interior, .intro-aluar, .seccion-sistema, .section-matriz, .section-vidrios, .section-rpt, .section-cta { padding-left: 20px; padding-right: 20px; padding-top: 60px; padding-bottom: 60px; }
+    .hero-interior-title { font-size: 42px; }
+    .hero-interior-bajada { font-size: 15px; }
+    .intro-aluar-title { font-size: 30px; }
+    .intro-aluar-text { font-size: 15px; }
+
+    .sistemas-nav-inner { padding: 12px 12px; gap: 16px; overflow-x: auto; flex-wrap: nowrap; }
+    .sistemas-nav-item img { width: 32px; height: 32px; }
+    .sistemas-nav-item .nav-label { font-size: 14px; }
+
+    .sistema-icon { width: 72px; height: 72px; }
+    .sistema-title { font-size: 42px; }
+    .sistema-subtitle { font-size: 14px; }
+    .sistema-desc { font-size: 14px; }
+
+    .section-title-h2 { font-size: 36px; }
+    .matriz-table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; }
+    .matriz-table thead th { font-size: 14px; padding: 12px 8px; }
+    .matriz-table tbody td { padding: 12px 8px; font-size: 12px; }
+
+    .vidrios-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .vidrio-card { padding: 24px 16px; }
+    .vidrio-icon { width: 76px; height: 76px; }
+    .vidrio-name { font-size: 20px; }
+    .vidrio-desc { font-size: 13px; }
+
+    .rpt-title { font-size: 36px; }
+    .rpt-text { font-size: 14px; }
+    .rpt-availability { flex-direction: column; align-items: flex-start; }
+
+    .cta-title { font-size: 32px; }
+
+    .footer { padding: 48px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+
+    .float-wa { bottom: 16px; right: 16px; width: 56px; height: 56px; }
+    .float-wa img { width: 56px; height: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="navbar-brand">
+    <span class="brand-text">FÁBRICA DE ABERTURAS · 1945</span>
+    <img class="brand-logo" src="assets/logos/logo-pametalica-negro.svg" alt="Pametalica">
+  </a>
+  <div class="navbar-menu">
+    <div class="nav-item">
+      <a href="#" class="nav-link">Productos <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="puertas-metalicas.html">Puertas Metálicas</a>
+        <a href="carpinteria-aluminio.html">Carpintería de Aluminio</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="index.html#nosotros" class="nav-link">Nosotros</a></div>
+    <div class="nav-item"><a href="index.html#contacto" class="nav-link">Contacto</a></div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">×</button>
+  <div class="mobile-menu-inner">
+    <a href="puertas-metalicas.html" class="mobile-menu-link">Puertas Metálicas</a>
+    <a href="carpinteria-aluminio.html" class="mobile-menu-link">Carpintería de Aluminio</a>
+    <a href="index.html#nosotros" class="mobile-menu-link">Nosotros</a>
+    <a href="index.html#contacto" class="mobile-menu-link">Contacto</a>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero-interior">
+  <div class="hero-pattern"></div>
+  <div class="hero-interior-content">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span>/</span>Carpintería de Aluminio</div>
+    <h1 class="hero-interior-title">Carpintería de Aluminio</h1>
+    <p class="hero-interior-bajada">Aberturas de aluminio a medida con sistemas Aluar. Tres líneas según prestación, cuatro tipos de vidrios y opción de rotura puente térmico para alta eficiencia energética.</p>
+  </div>
+</section>
+
+<!-- ========== INTRO ALUAR ========== -->
+<section class="intro-aluar">
+  <div class="intro-aluar-inner">
+    <div class="intro-aluar-tag">SISTEMAS ALUAR</div>
+    <h2 class="intro-aluar-title">El mejor aluminio argentino</h2>
+    <p class="intro-aluar-text">Trabajamos exclusivamente con perfilería Aluar, la principal productora de aluminio del país. Cada sistema está pensado para una prestación específica: desde el uso residencial estándar hasta proyectos premium con rotura puente térmico y vidrios DVH.</p>
+  </div>
+</section>
+
+<!-- ========== INDICE SISTEMAS ========== -->
+<nav class="sistemas-nav">
+  <div class="sistemas-nav-inner">
+    <a href="#modena" class="sistemas-nav-item"><img src="assets/iconos-aluminio/icono-modena.png" alt=""><span class="nav-label">Módena</span></a>
+    <a href="#a30" class="sistemas-nav-item"><img src="assets/iconos-aluminio/icono-a30.png" alt=""><span class="nav-label">A30</span></a>
+    <a href="#a40" class="sistemas-nav-item"><img src="assets/iconos-aluminio/icono-a40.png" alt=""><span class="nav-label">A40</span></a>
+  </div>
+</nav>
+
+<!-- ========== MODENA ========== -->
+<section class="seccion-sistema" id="modena">
+  <div class="sistema-layout">
+    <div class="sistema-info">
+      <div class="sistema-icon"><img src="assets/iconos-aluminio/icono-modena.png" alt=""></div>
+      <div class="sistema-tag">SISTEMA 01</div>
+      <h2 class="sistema-title">Módena</h2>
+      <div class="sistema-subtitle">Prestación estándar</div>
+      <p class="sistema-desc">Sistema de aluminio para uso residencial y comercial general. Perfil robusto, terminación pareja y compatibilidad con la mayoría de los tipos de abertura. Es la opción más equilibrada en precio y prestación.</p>
+      <ul class="sistema-features">
+        <li>Perfilería Aluar Módena</li>
+        <li>Cierres y refuerzos certificados</li>
+        <li>Acepta vidrios simples y laminados</li>
+        <li>Terminación anodizada o pintada</li>
+      </ul>
+    </div>
+    <div class="sistema-img">
+      <div class="sistema-img-content">
+        <div class="ph-num">01</div>
+        <div>Foto Módena<br>pendiente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== A30 ========== -->
+<section class="seccion-sistema alt" id="a30">
+  <div class="sistema-layout">
+    <div class="sistema-img">
+      <div class="sistema-img-content">
+        <div class="ph-num">02</div>
+        <div>Foto A30<br>pendiente</div>
+      </div>
+    </div>
+    <div class="sistema-info">
+      <div class="sistema-icon"><img src="assets/iconos-aluminio/icono-a30.png" alt=""></div>
+      <div class="sistema-tag">SISTEMA 02</div>
+      <h2 class="sistema-title">A30</h2>
+      <div class="sistema-subtitle">Alta prestación</div>
+      <p class="sistema-desc">Línea de mayor performance térmica y acústica. Mejor estanqueidad al agua y al aire, ideal para proyectos exigentes donde el confort interior es prioridad. Acepta DVH de hasta 24mm.</p>
+      <ul class="sistema-features">
+        <li>Perfilería Aluar A30 New</li>
+        <li>Cámaras múltiples de aislación</li>
+        <li>Acepta DVH hasta 24 mm</li>
+        <li>Burletes de doble contacto</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== A40 ========== -->
+<section class="seccion-sistema dark" id="a40">
+  <div class="sistema-layout">
+    <div class="sistema-info">
+      <div class="sistema-icon"><img src="assets/iconos-aluminio/icono-a40.png" alt=""></div>
+      <div class="sistema-tag">SISTEMA 03</div>
+      <h2 class="sistema-title">A40</h2>
+      <div class="sistema-subtitle">Premium · Top de gama</div>
+      <p class="sistema-desc">El sistema más completo. Pensado para arquitectura contemporánea y proyectos premium. Perfilería de gran espesor con rotura puente térmico, acepta cualquier tipo de vidrio y maximiza eficiencia energética.</p>
+      <ul class="sistema-features">
+        <li>Perfilería Aluar A40</li>
+        <li>Rotura puente térmico de serie</li>
+        <li>Acepta DVH y vidrios laminados</li>
+        <li>Compatible con cualquier tipo de abertura</li>
+        <li>Indicado para certificaciones energéticas</li>
+      </ul>
+    </div>
+    <div class="sistema-img">
+      <div class="sistema-img-content">
+        <div class="ph-num">03</div>
+        <div>Foto A40<br>pendiente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MATRIZ COMPATIBILIDAD ========== -->
+<section class="section-matriz">
+  <div class="matriz-header">
+    <span class="section-tag-top">COMPATIBILIDAD</span>
+    <h2 class="section-title-h2">Tipos de abertura por sistema</h2>
+    <hr class="section-divider">
+    <p class="section-subtitle-p">Cada sistema soporta determinados tipos de abertura. Usá esta tabla como referencia rápida para tu proyecto.</p>
+  </div>
+
+  <table class="matriz-table">
+    <thead>
+      <tr>
+        <th>Tipo de abertura</th>
+        <th>Módena</th>
+        <th>A30</th>
+        <th>A40</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Corredera</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Puerta balcón</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Puerta</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Desplazable</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Banderola</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Rebatible</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Oscilobatente</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Ventiluz</td><td><span class="check-no">—</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Paño fijo</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+    </tbody>
+  </table>
+
+  <p style="max-width: 1120px; margin: 24px auto 0; text-align: center; font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px; color: #8A8A8A; font-style: italic;">
+    * Compatibilidades basadas en el catálogo Aluar. Algunas variantes requieren consulta técnica.
+  </p>
+</section>
+
+<!-- ========== VIDRIOS ========== -->
+<section class="section-vidrios">
+  <div class="matriz-header">
+    <span class="section-tag-top">VIDRIOS</span>
+    <h2 class="section-title-h2">Tipos de vidrios disponibles</h2>
+    <hr class="section-divider">
+    <p class="section-subtitle-p">Cuatro opciones según la prestación que necesite el proyecto. Combinables con cualquiera de los sistemas.</p>
+  </div>
+
+  <div class="vidrios-grid">
+    <div class="vidrio-card">
+      <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-simple.png" alt=""></div>
+      <div class="vidrio-name">Simple</div>
+      <p class="vidrio-desc">Una sola hoja de vidrio float. Solución económica para aberturas interiores o donde no se requiere aislación especial.</p>
+    </div>
+    <div class="vidrio-card">
+      <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-laminado.png" alt=""></div>
+      <div class="vidrio-name">Laminado</div>
+      <p class="vidrio-desc">Dos hojas unidas por lámina de PVB. Resistente a impactos, no se desprende al romperse. Recomendado para seguridad y acústica.</p>
+    </div>
+    <div class="vidrio-card">
+      <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-templado.png" alt=""></div>
+      <div class="vidrio-name">Templado</div>
+      <p class="vidrio-desc">Vidrio sometido a tratamiento térmico que lo hace hasta 5 veces más resistente. Si se rompe lo hace en fragmentos pequeños y romos.</p>
+    </div>
+    <div class="vidrio-card">
+      <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-dvh.png" alt=""></div>
+      <div class="vidrio-name">DVH</div>
+      <p class="vidrio-desc">Doble vidriado hermético: dos hojas separadas por cámara de aire. Máxima aislación térmica y acústica. Reduce consumo energético.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ROTURA PUENTE TERMICO ========== -->
+<section class="section-rpt">
+  <div class="rpt-layout">
+    <div>
+      <div class="rpt-tag">PRESTACIÓN AVANZADA</div>
+      <h2 class="rpt-title">Rotura puente térmico</h2>
+      <hr class="rpt-divider">
+      <p class="rpt-text">El aluminio es excelente conductor — del calor y del frío. La "rotura puente térmico" es una interrupción de poliamida dentro del perfil que separa el lado interior del exterior, impidiendo que la temperatura se transmita.</p>
+      <p class="rpt-text">Resultado: ambientes más estables, menor consumo de calefacción y aire acondicionado, y prevención de condensación en los marcos.</p>
+
+      <div class="rpt-availability">
+        <div class="rpt-badge disponible">A40 incluido</div>
+        <div class="rpt-badge opcional">A30 opcional</div>
+      </div>
+    </div>
+
+    <div class="rpt-diagram">
+      <svg class="rpt-diagram-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Esquema simplificado del perfil con rotura puente termico -->
+        <!-- Lado exterior (frio) -->
+        <rect x="40" y="60" width="120" height="280" fill="#2A4D6E" stroke="#4A7AAA" stroke-width="2"/>
+        <text x="100" y="180" font-family="Barlow Condensed" font-weight="900" font-size="18" fill="#FFFFFF" text-anchor="middle">EXTERIOR</text>
+        <text x="100" y="205" font-family="Barlow" font-weight="500" font-size="11" fill="#9CB8D8" text-anchor="middle">aluminio</text>
+
+        <!-- Rotura puente termico (poliamida) -->
+        <rect x="160" y="60" width="80" height="280" fill="#D5501B" stroke="#FF6B2D" stroke-width="2"/>
+        <text x="200" y="180" font-family="Barlow Condensed" font-weight="900" font-size="14" fill="#FFFFFF" text-anchor="middle">POLIAMIDA</text>
+        <text x="200" y="205" font-family="Barlow" font-weight="500" font-size="10" fill="#FFCCAA" text-anchor="middle">aislante</text>
+
+        <!-- Lado interior (calido) -->
+        <rect x="240" y="60" width="120" height="280" fill="#6E4A2A" stroke="#A87A5A" stroke-width="2"/>
+        <text x="300" y="180" font-family="Barlow Condensed" font-weight="900" font-size="18" fill="#FFFFFF" text-anchor="middle">INTERIOR</text>
+        <text x="300" y="205" font-family="Barlow" font-weight="500" font-size="11" fill="#D8B89C" text-anchor="middle">aluminio</text>
+
+        <!-- Flechas de termico -->
+        <line x1="20" y1="220" x2="40" y2="220" stroke="#4A7AAA" stroke-width="3" marker-end="url(#arrow)"/>
+        <text x="30" y="245" font-family="Barlow" font-weight="600" font-size="12" fill="#4A7AAA" text-anchor="middle">FRÍO</text>
+        <line x1="380" y1="220" x2="360" y2="220" stroke="#A87A5A" stroke-width="3" marker-end="url(#arrow)"/>
+        <text x="370" y="245" font-family="Barlow" font-weight="600" font-size="12" fill="#A87A5A" text-anchor="middle">CALOR</text>
+
+        <!-- Stop -->
+        <line x1="155" y1="120" x2="245" y2="120" stroke="#D5501B" stroke-width="2" stroke-dasharray="4 4"/>
+        <text x="200" y="80" font-family="Barlow" font-weight="600" font-size="10" fill="#D5501B" text-anchor="middle" letter-spacing="2">CORTE TÉRMICO</text>
+
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <polygon points="0,0 10,5 0,10" fill="currentColor"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="section-cta">
+  <h2 class="cta-title">¿Proyecto en aluminio?</h2>
+  <p class="cta-text">Asesoramos en la elección del sistema, tipo de vidrio y configuración según las necesidades técnicas de tu obra. Sin compromiso.</p>
+  <a href="index.html#contacto" class="btn-white">Contactanos →</a>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="footer-logo"><img src="assets/logos/logo-pametalica-blanco.svg" alt="Pametalica"></a>
+      <p class="footer-tagline">Fábrica de aberturas metálicas y carpintería de aluminio. Desde 1945.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">PRODUCTOS</div>
+      <ul class="footer-list">
+        <li><a href="puertas-metalicas.html">Puertas Metálicas</a></li>
+        <li><a href="carpinteria-aluminio.html">Carpintería de Aluminio</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">EMPRESA</div>
+      <ul class="footer-list">
+        <li><a href="index.html#nosotros">Nosotros</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">CONTACTO</div>
+      <ul class="footer-info">
+        <li>011 4762-3000</li>
+        <li>WhatsApp 11 2690-9379</li>
+        <li>pametalica@pametalica.com.ar</li>
+        <li>@pametalica_aberturas</li>
+        <li>Belgrano 3174, Munro</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Lado Luminoso S.R.L. — Todos los derechos reservados</div>
+    <div class="footer-social">Instagram · Facebook · LinkedIn</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa hidden-initial" aria-label="WhatsApp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="WhatsApp"></a>
+
+<script>
+  (function() {
+    var navbar = document.getElementById('navbar');
+    var floatWa = document.querySelector('.float-wa');
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileMenuClose = document.getElementById('mobileMenuClose');
+    var mobileLinks = document.querySelectorAll('.mobile-menu-link');
+
+    function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+    function onScroll() {
+      var y = window.scrollY;
+      navbar.classList.add('scrolled');
+      if (isMobile()) {
+        if (y > 300) { floatWa.classList.add('visible-scroll'); floatWa.classList.remove('hidden-initial'); }
+        else { floatWa.classList.add('hidden-initial'); floatWa.classList.remove('visible-scroll'); }
+      } else {
+        floatWa.classList.remove('hidden-initial');
+        floatWa.classList.remove('visible-scroll');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    hamburger.addEventListener('click', openMenu);
+    mobileMenuClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(function(link) { link.addEventListener('click', closeMenu); });
+  })();
+</script>
+
+</body>
+</html>
