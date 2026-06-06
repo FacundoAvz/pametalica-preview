@@ -234,6 +234,19 @@
   }
   .seccion-linea.dark .spec-label { color: #DCDCDC; }
 
+  /* ========== ECONOMICA LAYOUT (2 columnas) ========== */
+  .economica-layout {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .economica-info { /* hereda los estilos del header */ }
+  .economica-img {
+    background: #FFFFFF; aspect-ratio: 4 / 5; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    border: 1px solid #DCDCDC;
+  }
+  .economica-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
   /* ========== FALTA INFORMACION BAND ========== */
   .falta-info-band {
     max-width: 1120px; margin: 48px auto 0;
@@ -423,6 +436,7 @@
     .lineas-nav-inner { padding: 16px 24px; }
     .seccion-linea, .section-opcionales, .section-tecnicos { padding: 80px 32px; }
     .modelos-grid, .detalles-band, .opcionales-grid, .opcionales-fotos { grid-template-columns: repeat(2, 1fr); }
+    .economica-layout { grid-template-columns: 1fr; gap: 32px; }
     .descargas { grid-template-columns: 1fr; }
     .tecnicos-grid { grid-template-columns: 1fr; }
     .footer { padding: 64px 32px; }
@@ -622,18 +636,20 @@
 
 <!-- ========== 5. ECONOMICA ========== -->
 <section class="seccion-linea alt" id="economica">
-  <div class="linea-header">
-    <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-economica.jpg" alt=""></div>
-    <div class="linea-header-text">
+  <div class="economica-layout">
+    <div class="economica-info">
+      <div class="linea-header-icon" style="margin-bottom: 24px;"><img src="assets/iconos-puertas/icono-economica.jpg" alt=""></div>
       <div class="linea-header-tag">LÍNEA 05</div>
       <h2 class="linea-header-title">Económica</h2>
-      <p class="linea-header-desc">Versión simplificada de la línea principal. Falta información: alcance y características específicas a definir con Pametálica.</p>
+      <p class="linea-header-desc" style="margin-top: 20px;">Versión simplificada de la línea principal. Modelo único con foco en costo y rapidez de producción.</p>
+      <div class="falta-info-band" style="margin-top: 32px;">
+        <span class="falta-info-tag">Falta información</span>
+        <p>Alcance, características específicas y casos de uso a definir con Pametálica.</p>
+      </div>
     </div>
-  </div>
-
-  <div class="modelos-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 720px;">
-    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/economica/render-linea-economica.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">VERSIÓN</div><div class="modelo-card-name">Estándar</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/economica/render-linea-economica-2.png" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">VERSIÓN</div><div class="modelo-card-name">Boceto</div></div></div>
+    <div class="economica-img">
+      <img src="assets/puertas/economica/render-linea-economica.jpg" alt="Puerta línea económica">
+    </div>
   </div>
 </section>
 
