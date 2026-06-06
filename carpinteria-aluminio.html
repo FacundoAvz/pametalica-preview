@@ -226,6 +226,22 @@
   }
   .seccion-sistema.dark .sistema-img-content .ph-num { color: #4A4A4A; }
 
+  /* ========== FALTA INFO (mini) ========== */
+  .falta-info-tag {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 2px; color: #D5501B;
+    padding: 6px 12px; border: 1px solid #D5501B; margin-right: 12px;
+  }
+  .falta-info-mini {
+    margin-top: 24px; padding: 16px 20px;
+    border: 1px dashed #B8B8B8; background: #FAFAFA;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px;
+    color: #5A5A5A; line-height: 1.5;
+  }
+  .falta-info-mini.dark { background: #232323; border-color: #4A4A4A; color: #B8B8B8; }
+
   /* ========== MATRIZ COMPATIBILIDAD ========== */
   .section-matriz { background: #FFFFFF; padding: 100px 80px; }
   .matriz-header { text-align: center; max-width: 720px; margin: 0 auto 56px; }
@@ -268,6 +284,7 @@
   .matriz-table tbody td:first-child { text-align: left; padding-left: 24px; }
   .check-yes { color: #25A85A; font-weight: 900; font-size: 18px; }
   .check-no { color: #C8C8C8; font-weight: 400; font-size: 18px; }
+  .check-pending { color: #B8B8B8; font-weight: 700; font-size: 18px; font-family: 'Barlow Condensed', sans-serif; }
 
   /* ========== VIDRIOS ========== */
   .section-vidrios { background: #F0EFED; padding: 100px 80px; }
@@ -507,7 +524,7 @@
   <div class="intro-aluar-inner">
     <div class="intro-aluar-tag">SISTEMAS ALUAR</div>
     <h2 class="intro-aluar-title">El mejor aluminio argentino</h2>
-    <p class="intro-aluar-text">Trabajamos exclusivamente con perfilería Aluar, la principal productora de aluminio del país. Cada sistema está pensado para una prestación específica: desde el uso residencial estándar hasta proyectos premium con rotura puente térmico y vidrios DVH.</p>
+    <p class="intro-aluar-text">Trabajamos con perfilería Aluar. Tres líneas según prestación: Módena (estándar), A30 (alta) y A40 (premium). El texto completo será provisto por Pametálica.</p>
   </div>
 </section>
 
@@ -528,13 +545,11 @@
       <div class="sistema-tag">SISTEMA 01</div>
       <h2 class="sistema-title">Módena</h2>
       <div class="sistema-subtitle">Prestación estándar</div>
-      <p class="sistema-desc">Sistema de aluminio para uso residencial y comercial general. Perfil robusto, terminación pareja y compatibilidad con la mayoría de los tipos de abertura. Es la opción más equilibrada en precio y prestación.</p>
-      <ul class="sistema-features">
-        <li>Perfilería Aluar Módena</li>
-        <li>Cierres y refuerzos certificados</li>
-        <li>Acepta vidrios simples y laminados</li>
-        <li>Terminación anodizada o pintada</li>
-      </ul>
+      <p class="sistema-desc">Sistema Módena de Aluar. Línea de prestación estándar. Descripción técnica detallada a completar con Pametálica.</p>
+      <div class="falta-info-mini">
+        <span class="falta-info-tag">Falta información</span>
+        <span>Características técnicas, tipos de abertura compatibles y terminaciones disponibles.</span>
+      </div>
     </div>
     <div class="sistema-img">
       <div class="sistema-img-content">
@@ -559,13 +574,11 @@
       <div class="sistema-tag">SISTEMA 02</div>
       <h2 class="sistema-title">A30</h2>
       <div class="sistema-subtitle">Alta prestación</div>
-      <p class="sistema-desc">Línea de mayor performance térmica y acústica. Mejor estanqueidad al agua y al aire, ideal para proyectos exigentes donde el confort interior es prioridad. Acepta DVH de hasta 24mm.</p>
-      <ul class="sistema-features">
-        <li>Perfilería Aluar A30 New</li>
-        <li>Cámaras múltiples de aislación</li>
-        <li>Acepta DVH hasta 24 mm</li>
-        <li>Burletes de doble contacto</li>
-      </ul>
+      <p class="sistema-desc">Sistema A30 de Aluar. Línea de alta prestación. Descripción técnica detallada a completar con Pametálica.</p>
+      <div class="falta-info-mini">
+        <span class="falta-info-tag">Falta información</span>
+        <span>Especificaciones de aislación, DVH compatible y tipos de abertura.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -578,14 +591,11 @@
       <div class="sistema-tag">SISTEMA 03</div>
       <h2 class="sistema-title">A40</h2>
       <div class="sistema-subtitle">Premium · Top de gama</div>
-      <p class="sistema-desc">El sistema más completo. Pensado para arquitectura contemporánea y proyectos premium. Perfilería de gran espesor con rotura puente térmico, acepta cualquier tipo de vidrio y maximiza eficiencia energética.</p>
-      <ul class="sistema-features">
-        <li>Perfilería Aluar A40</li>
-        <li>Rotura puente térmico de serie</li>
-        <li>Acepta DVH y vidrios laminados</li>
-        <li>Compatible con cualquier tipo de abertura</li>
-        <li>Indicado para certificaciones energéticas</li>
-      </ul>
+      <p class="sistema-desc">Sistema A40 de Aluar. Línea premium / top de gama. Descripción técnica detallada a completar con Pametálica.</p>
+      <div class="falta-info-mini dark">
+        <span class="falta-info-tag">Falta información</span>
+        <span>Características avanzadas, rotura puente térmico, vidrios y compatibilidades.</span>
+      </div>
     </div>
     <div class="sistema-img">
       <div class="sistema-img-content">
@@ -602,7 +612,12 @@
     <span class="section-tag-top">COMPATIBILIDAD</span>
     <h2 class="section-title-h2">Tipos de abertura por sistema</h2>
     <hr class="section-divider">
-    <p class="section-subtitle-p">Cada sistema soporta determinados tipos de abertura. Usá esta tabla como referencia rápida para tu proyecto.</p>
+    <p class="section-subtitle-p">Estructura visual basada en el boceto del cliente. Las compatibilidades específicas las completa Pametálica.</p>
+  </div>
+
+  <div class="falta-info-mini" style="max-width:1120px; margin: 0 auto 32px;">
+    <span class="falta-info-tag">A completar</span>
+    <span>El boceto del cliente indica que cada sistema soporta determinados tipos de abertura. La matriz final será provista por Pametálica.</span>
   </div>
 
   <table class="matriz-table">
@@ -615,21 +630,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td>Corredera</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Puerta balcón</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Puerta</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Desplazable</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Banderola</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Rebatible</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Oscilobatente</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Ventiluz</td><td><span class="check-no">—</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
-      <tr><td>Paño fijo</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+      <tr><td>Corredera</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Puerta balcón</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Puerta</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Desplazable</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Banderola</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Rebatible</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Oscilobatente</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Ventiluz</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
+      <tr><td>Paño fijo</td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td><td><span class="check-pending">?</span></td></tr>
     </tbody>
   </table>
-
-  <p style="max-width: 1120px; margin: 24px auto 0; text-align: center; font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 13px; color: #8A8A8A; font-style: italic;">
-    * Compatibilidades basadas en el catálogo Aluar. Algunas variantes requieren consulta técnica.
-  </p>
 </section>
 
 <!-- ========== VIDRIOS ========== -->
@@ -638,29 +649,29 @@
     <span class="section-tag-top">VIDRIOS</span>
     <h2 class="section-title-h2">Tipos de vidrios disponibles</h2>
     <hr class="section-divider">
-    <p class="section-subtitle-p">Cuatro opciones según la prestación que necesite el proyecto. Combinables con cualquiera de los sistemas.</p>
+    <p class="section-subtitle-p">Cuatro opciones disponibles. Descripción técnica final a completar con Pametálica.</p>
   </div>
 
   <div class="vidrios-grid">
     <div class="vidrio-card">
       <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-simple.png" alt=""></div>
       <div class="vidrio-name">Simple</div>
-      <p class="vidrio-desc">Una sola hoja de vidrio float. Solución económica para aberturas interiores o donde no se requiere aislación especial.</p>
+      <p class="vidrio-desc" style="color:#8A8A8A; font-style:italic;">Descripción técnica — falta información</p>
     </div>
     <div class="vidrio-card">
       <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-laminado.png" alt=""></div>
       <div class="vidrio-name">Laminado</div>
-      <p class="vidrio-desc">Dos hojas unidas por lámina de PVB. Resistente a impactos, no se desprende al romperse. Recomendado para seguridad y acústica.</p>
+      <p class="vidrio-desc" style="color:#8A8A8A; font-style:italic;">Descripción técnica — falta información</p>
     </div>
     <div class="vidrio-card">
       <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-templado.png" alt=""></div>
       <div class="vidrio-name">Templado</div>
-      <p class="vidrio-desc">Vidrio sometido a tratamiento térmico que lo hace hasta 5 veces más resistente. Si se rompe lo hace en fragmentos pequeños y romos.</p>
+      <p class="vidrio-desc" style="color:#8A8A8A; font-style:italic;">Descripción técnica — falta información</p>
     </div>
     <div class="vidrio-card">
       <div class="vidrio-icon"><img src="assets/iconos-vidrios/icono-dvh.png" alt=""></div>
       <div class="vidrio-name">DVH</div>
-      <p class="vidrio-desc">Doble vidriado hermético: dos hojas separadas por cámara de aire. Máxima aislación térmica y acústica. Reduce consumo energético.</p>
+      <p class="vidrio-desc" style="color:#8A8A8A; font-style:italic;">Descripción técnica — falta información</p>
     </div>
   </div>
 </section>
@@ -672,12 +683,11 @@
       <div class="rpt-tag">PRESTACIÓN AVANZADA</div>
       <h2 class="rpt-title">Rotura puente térmico</h2>
       <hr class="rpt-divider">
-      <p class="rpt-text">El aluminio es excelente conductor — del calor y del frío. La "rotura puente térmico" es una interrupción de poliamida dentro del perfil que separa el lado interior del exterior, impidiendo que la temperatura se transmita.</p>
-      <p class="rpt-text">Resultado: ambientes más estables, menor consumo de calefacción y aire acondicionado, y prevención de condensación en los marcos.</p>
+      <p class="rpt-text">Concepto mencionado en el boceto del cliente. Sistema con poliamida intermedia que interrumpe la transferencia térmica del aluminio.</p>
 
-      <div class="rpt-availability">
-        <div class="rpt-badge disponible">A40 incluido</div>
-        <div class="rpt-badge opcional">A30 opcional</div>
+      <div class="falta-info-mini dark" style="margin-top: 24px;">
+        <span class="falta-info-tag">Falta información</span>
+        <span>Texto descriptivo completo y disponibilidad por sistema a confirmar con Pametálica.</span>
       </div>
     </div>
 
@@ -721,8 +731,8 @@
 
 <!-- ========== CTA ========== -->
 <section class="section-cta">
-  <h2 class="cta-title">¿Proyecto en aluminio?</h2>
-  <p class="cta-text">Asesoramos en la elección del sistema, tipo de vidrio y configuración según las necesidades técnicas de tu obra. Sin compromiso.</p>
+  <h2 class="cta-title">¿Hablamos de tu proyecto?</h2>
+  <p class="cta-text">Contanos qué necesitás y te orientamos en sistema, vidrio y configuración.</p>
   <a href="index.html#contacto" class="btn-white">Contactanos →</a>
 </section>
 

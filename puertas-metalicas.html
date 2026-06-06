@@ -186,8 +186,12 @@
     display: flex; flex-direction: column;
   }
   .seccion-linea.dark .modelo-card { border-color: #2E2E2E; background: #2E2E2E; }
-  .modelo-card-img { background: #DCDCDC; height: 240px; overflow: hidden; }
+  .modelo-card-img { background: #F0EFED; height: 240px; overflow: hidden; }
   .modelo-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  /* Variante para imágenes que no deben recortarse (renders horizontales, bocetos) */
+  .modelo-card-img.contain { background: #FFFFFF; }
+  .modelo-card-img.contain img { object-fit: contain; padding: 12px; }
+  .seccion-linea.dark .modelo-card-img.contain { background: #FFFFFF; }
   .modelo-card-body { padding: 16px 20px 20px; text-align: center; }
   .modelo-card-num {
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 10px;
@@ -205,7 +209,7 @@
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
   }
   .detalle-card { background: #2E2E2E; border: 1px solid #3A3A3A; padding: 12px; }
-  .detalle-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .detalle-card img { width: 100%; height: 180px; object-fit: contain; display: block; background: #FFFFFF; padding: 8px; }
   .detalle-card-label {
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 11px;
     text-transform: uppercase; letter-spacing: 2px; color: #FFFFFF;
@@ -229,6 +233,27 @@
     text-transform: uppercase; letter-spacing: 2px; color: #5A5A5A; margin-top: 8px;
   }
   .seccion-linea.dark .spec-label { color: #DCDCDC; }
+
+  /* ========== FALTA INFORMACION BAND ========== */
+  .falta-info-band {
+    max-width: 1120px; margin: 48px auto 0;
+    padding: 20px 24px;
+    border: 1px dashed #B8B8B8; background: #FAFAFA;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .seccion-linea.dark .falta-info-band { border-color: #4A4A4A; background: #232323; }
+  .falta-info-tag {
+    flex: 0 0 auto;
+    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 2px; color: #D5501B;
+    padding: 6px 12px; border: 1px solid #D5501B;
+  }
+  .falta-info-band p {
+    flex: 1;
+    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 14px;
+    color: #5A5A5A; line-height: 1.6;
+  }
+  .seccion-linea.dark .falta-info-band p { color: #B8B8B8; }
 
   /* ========== OPCIONALES ========== */
   .section-opcionales { background: #F0EFED; padding: 100px 80px; }
@@ -267,8 +292,8 @@
     max-width: 1120px; margin: 48px auto 0;
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
   }
-  .opcional-foto { height: 200px; overflow: hidden; background: #DCDCDC; }
-  .opcional-foto img { width: 100%; height: 100%; object-fit: cover; }
+  .opcional-foto { height: 200px; overflow: hidden; background: #FFFFFF; padding: 12px; }
+  .opcional-foto img { width: 100%; height: 100%; object-fit: contain; }
 
   /* ========== DATOS TECNICOS ========== */
   .section-tecnicos {
@@ -506,7 +531,7 @@
     <div class="linea-header-text">
       <div class="linea-header-tag">LÍNEA 01</div>
       <h2 class="linea-header-title">Inyectadas con poliuretano</h2>
-      <p class="linea-header-desc">Doble chapa con inyección de poliuretano expandido como núcleo aislante. Núcleo rígido sin puentes térmicos, espesor uniforme y excelente performance acústica. La base de toda nuestra producción.</p>
+      <p class="linea-header-desc">Doble chapa con inyección de poliuretano expandido como núcleo. Es la base de toda nuestra producción y se aplica al resto de las líneas.</p>
     </div>
   </div>
 
@@ -521,11 +546,9 @@
     <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/inyectadas/render-modelo-18.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">18</div></div></div>
   </div>
 
-  <div class="specs-band">
-    <div class="spec"><div class="spec-num">44</div><div class="spec-label">mm de espesor</div></div>
-    <div class="spec"><div class="spec-num">2</div><div class="spec-label">Chapas BWG 22</div></div>
-    <div class="spec"><div class="spec-num">100%</div><div class="spec-label">Poliuretano inyectado</div></div>
-    <div class="spec"><div class="spec-num">8</div><div class="spec-label">Modelos disponibles</div></div>
+  <div class="falta-info-band">
+    <span class="falta-info-tag">Falta información</span>
+    <p>Especificaciones técnicas (espesor, calibre de chapa, dimensiones estándar) a completar con datos oficiales del cliente.</p>
   </div>
 </section>
 
@@ -536,7 +559,7 @@
     <div class="linea-header-text">
       <div class="linea-header-tag">LÍNEA 02</div>
       <h2 class="linea-header-title">Seguridad</h2>
-      <p class="linea-header-desc">Línea premium con cerradura Kallay de doble perno, bisagra pivot de diseño propio y refuerzos internos. Pensada para accesos principales que requieren máxima protección sin resignar diseño.</p>
+      <p class="linea-header-desc">Línea premium con cerradura Kallay y bisagra pivot de diseño propio Pametálica. Pensada para accesos principales que requieren mayor protección.</p>
     </div>
   </div>
 
@@ -549,27 +572,20 @@
   <div class="detalles-band">
     <div class="detalle-card">
       <img src="assets/puertas/seguridad/foto-detalle-01.jpg" alt="">
-      <div class="detalle-card-label">Cerradura Kallay 4000/4010</div>
+      <div class="detalle-card-label">Detalle 01 — Falta información</div>
     </div>
     <div class="detalle-card">
       <img src="assets/puertas/seguridad/foto-detalle-02.jpg" alt="">
-      <div class="detalle-card-label">Bisagra pivot patentada</div>
+      <div class="detalle-card-label">Detalle 02 — Falta información</div>
     </div>
     <div class="detalle-card">
       <img src="assets/puertas/seguridad/foto-detalle-03.jpg" alt="">
-      <div class="detalle-card-label">Refuerzo interno</div>
+      <div class="detalle-card-label">Detalle 03 — Falta información</div>
     </div>
     <div class="detalle-card">
       <img src="assets/puertas/seguridad/foto-detalle-04.jpg" alt="">
-      <div class="detalle-card-label">Cerrojo doble perno</div>
+      <div class="detalle-card-label">Detalle 04 — Falta información</div>
     </div>
-  </div>
-
-  <div class="specs-band">
-    <div class="spec"><div class="spec-num">2</div><div class="spec-label">Cerrojos por hoja</div></div>
-    <div class="spec"><div class="spec-num">4</div><div class="spec-label">Pernos antipalanca</div></div>
-    <div class="spec"><div class="spec-num">Pivot</div><div class="spec-label">Sistema de bisagra</div></div>
-    <div class="spec"><div class="spec-num">Kallay</div><div class="spec-label">Marca certificada</div></div>
   </div>
 </section>
 
@@ -580,7 +596,7 @@
     <div class="linea-header-text">
       <div class="linea-header-tag">LÍNEA 03</div>
       <h2 class="linea-header-title">Ignífugas</h2>
-      <p class="linea-header-desc">Resistencia certificada al fuego para sectores de riesgo. Tres modelos diseñados para cumplir normativa de incendio: con ventilación, sin ventilación y con visor pirex. Indicadas para edificios públicos, industria y depósitos.</p>
+      <p class="linea-header-desc">Línea con resistencia al fuego para sectores de riesgo. Tres modelos disponibles, incluida una versión ventilada.</p>
     </div>
   </div>
 
@@ -590,11 +606,9 @@
     <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-venti.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">Ventilada</div></div></div>
   </div>
 
-  <div class="specs-band">
-    <div class="spec"><div class="spec-num">F-60</div><div class="spec-label">Resistencia mínima</div></div>
-    <div class="spec"><div class="spec-num">F-90</div><div class="spec-label">Modelo reforzado</div></div>
-    <div class="spec"><div class="spec-num">Pirex</div><div class="spec-label">Visor opcional</div></div>
-    <div class="spec"><div class="spec-num">Certif.</div><div class="spec-label">Normativa vigente</div></div>
+  <div class="falta-info-band">
+    <span class="falta-info-tag">Falta información</span>
+    <p>Certificaciones, normativa de resistencia al fuego (F-XX) y opciones específicas por modelo a confirmar con Pametálica.</p>
   </div>
 </section>
 
@@ -605,13 +619,13 @@
     <div class="linea-header-text">
       <div class="linea-header-tag">LÍNEA 04</div>
       <h2 class="linea-header-title">Dobles y portones</h2>
-      <p class="linea-header-desc">Aberturas grandes para accesos principales, garages y depósitos. Doble hoja y portones de tres hojas, con la misma construcción inyectada que caracteriza a Pametálica. Medidas a verificar según proyecto.</p>
+      <p class="linea-header-desc">Aberturas de mayor tamaño para accesos principales, garages y depósitos. Doble hoja y portones de tres hojas.</p>
     </div>
   </div>
 
   <div class="modelos-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 720px;">
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/dobles-portones/render-puerta-doble.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Doble hoja</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/dobles-portones/render-porton-doble.png" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Portón 3 hojas</div></div></div>
+    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-puerta-doble.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Doble hoja</div></div></div>
+    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-porton-doble.png" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Portón 3 hojas</div></div></div>
   </div>
 
   <div style="max-width: 1120px; margin: 56px auto 0; background: #F0EFED; padding: 32px;">
@@ -627,13 +641,13 @@
     <div class="linea-header-text">
       <div class="linea-header-tag">LÍNEA 05</div>
       <h2 class="linea-header-title">Económica</h2>
-      <p class="linea-header-desc">Versión simplificada para proyectos con presupuestos ajustados. Mantiene los procesos productivos de la línea principal en una construcción más liviana. Ideal para emprendimientos, viviendas sociales y locaciones secundarias.</p>
+      <p class="linea-header-desc">Versión simplificada de la línea principal. Falta información: alcance y características específicas a definir con Pametálica.</p>
     </div>
   </div>
 
   <div class="modelos-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 720px;">
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/economica/render-linea-economica.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">VERSIÓN</div><div class="modelo-card-name">Estándar</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/economica/render-linea-economica-2.png" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">VERSIÓN</div><div class="modelo-card-name">Boceto</div></div></div>
+    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/economica/render-linea-economica.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">VERSIÓN</div><div class="modelo-card-name">Estándar</div></div></div>
+    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/economica/render-linea-economica-2.png" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">VERSIÓN</div><div class="modelo-card-name">Boceto</div></div></div>
   </div>
 </section>
 
@@ -661,7 +675,12 @@
     <span class="section-tag-top">ACCESORIOS</span>
     <h2 class="section-title-h2">Opcionales</h2>
     <hr class="section-divider">
-    <p class="section-subtitle-p">Cualquier puerta Pametálica admite estos accesorios. Combinables según el modelo y la línea.</p>
+    <p class="section-subtitle-p">Accesorios disponibles según el modelo de puerta. Lista basada en el diagrama técnico provisto por Pametálica.</p>
+  </div>
+
+  <div class="falta-info-band" style="margin-bottom: 48px;">
+    <span class="falta-info-tag">A confirmar</span>
+    <p>La lista proviene del gráfico oficial <em>tabla-opcionales</em>. Disponibilidad y compatibilidad por modelo a validar con Pametálica antes de publicar.</p>
   </div>
 
   <div class="opcionales-grid">
@@ -693,19 +712,16 @@
     <span class="section-tag-top" style="color:#D5501B;">FICHA TÉCNICA</span>
     <h2 class="section-title-h2" style="color:#FFFFFF;">Datos técnicos</h2>
     <hr class="section-divider">
-    <p class="section-subtitle-p" style="color:#DCDCDC;">Especificaciones generales de la línea inyectada. Para detalles por modelo, descargá la ficha técnica.</p>
+    <p class="section-subtitle-p" style="color:#DCDCDC;">Para detalle por modelo, descargá las fichas técnicas oficiales.</p>
   </div>
 
   <div class="tecnicos-grid">
     <div class="tecnicos-img"><img src="assets/puertas/tecnicos/grafico-datos-tecnicos.png" alt="Datos técnicos"></div>
     <div class="tecnicos-list">
-      <div class="tecnico-row"><span class="tecnico-key">Espesor de hoja</span><span class="tecnico-val">44 mm</span></div>
-      <div class="tecnico-row"><span class="tecnico-key">Chapa exterior</span><span class="tecnico-val">BWG 22</span></div>
-      <div class="tecnico-row"><span class="tecnico-key">Chapa interior</span><span class="tecnico-val">BWG 22</span></div>
-      <div class="tecnico-row"><span class="tecnico-key">Núcleo</span><span class="tecnico-val">Poliuretano inyectado</span></div>
-      <div class="tecnico-row"><span class="tecnico-key">Marco</span><span class="tecnico-val">Chapa BWG 18</span></div>
-      <div class="tecnico-row"><span class="tecnico-key">Medidas estándar</span><span class="tecnico-val">0.80 × 2.00 / 0.90 × 2.00 m</span></div>
-      <div class="tecnico-row" style="border-bottom: none;"><span class="tecnico-key">Cerradura</span><span class="tecnico-val">Kallay 4000 / 4010</span></div>
+      <div class="falta-info-band" style="background:#232323; border-color:#4A4A4A; margin-top:0;">
+        <span class="falta-info-tag">Falta información</span>
+        <p>Especificaciones detalladas (espesor de chapa, calibres, medidas estándar) a completar con datos verificados por Pametálica. Mientras tanto las fichas PDF abajo contienen los datos oficiales por modelo.</p>
+      </div>
     </div>
   </div>
 
@@ -727,8 +743,8 @@
 
 <!-- ========== CTA FINAL ========== -->
 <section class="section-cta">
-  <h2 class="cta-title">¿Necesitás asesoramiento?</h2>
-  <p class="cta-text">Más de 75 años de experiencia están detrás de cada puerta. Contanos tu proyecto y te orientamos en la línea más adecuada.</p>
+  <h2 class="cta-title">¿Hablamos de tu proyecto?</h2>
+  <p class="cta-text">Contanos qué necesitás y te orientamos en la línea más adecuada.</p>
   <a href="index.html#contacto" class="btn-white">Contactanos →</a>
 </section>
 
