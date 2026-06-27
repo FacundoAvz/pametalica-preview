@@ -18,7 +18,7 @@
   button, input, textarea { font-family: inherit; }
   .container { max-width: 1280px; margin: 0 auto; }
 
-  /* ========== NAVBAR (igual home) ========== */
+  /* ========== NAVBAR ========== */
   .navbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
@@ -182,13 +182,13 @@
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
   }
   .modelo-card {
+    position: relative;
     background: #FFFFFF; border: 1px solid #DCDCDC;
     display: flex; flex-direction: column;
   }
   .seccion-linea.dark .modelo-card { border-color: #2E2E2E; background: #2E2E2E; }
   .modelo-card-img { background: #F0EFED; height: 240px; overflow: hidden; }
   .modelo-card-img img { width: 100%; height: 100%; object-fit: cover; }
-  /* Variante para imágenes que no deben recortarse (renders horizontales, bocetos) */
   .modelo-card-img.contain { background: #FFFFFF; }
   .modelo-card-img.contain img { object-fit: contain; padding: 12px; }
   .seccion-linea.dark .modelo-card-img.contain { background: #FFFFFF; }
@@ -203,43 +203,38 @@
   }
   .seccion-linea.dark .modelo-card-name { color: #FFFFFF; }
 
-  /* ========== DETALLES DE SEGURIDAD ========== */
-  .detalles-band {
-    max-width: 1120px; margin: 64px auto 0;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-  }
-  .detalle-card { background: #2E2E2E; border: 1px solid #3A3A3A; padding: 12px; }
-  .detalle-card img { width: 100%; height: 180px; object-fit: contain; display: block; background: #FFFFFF; padding: 8px; }
-  .detalle-card-label {
-    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 2px; color: #FFFFFF;
-    text-align: center; margin-top: 12px;
+  /* ========== BADGE EN DESARROLLO ========== */
+  .badge-dev {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    background: #D5501B; color: #FFFFFF; padding: 4px 10px;
   }
 
-  /* ========== SPECS BAND ========== */
-  .specs-band {
+  /* ========== BOTONES PDF POR LINEA ========== */
+  .linea-btns {
     max-width: 1120px; margin: 48px auto 0;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-    padding: 32px 0; border-top: 1px solid #DCDCDC; border-bottom: 1px solid #DCDCDC;
+    display: flex; gap: 16px; flex-wrap: wrap;
   }
-  .seccion-linea.dark .specs-band { border-color: #2E2E2E; }
-  .spec { text-align: center; }
-  .spec-num {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
-    font-size: 42px; color: #D5501B; line-height: 1;
+  .btn-linea-pdf {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px; border: 1.5px solid #1A1A1A;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 2px; color: #1A1A1A;
+    transition: background 0.2s ease, color 0.2s ease;
   }
-  .spec-label {
-    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 12px;
-    text-transform: uppercase; letter-spacing: 2px; color: #5A5A5A; margin-top: 8px;
+  .btn-linea-pdf:hover { background: #1A1A1A; color: #FFFFFF; }
+  .seccion-linea.dark .btn-linea-pdf { border-color: #DCDCDC; color: #DCDCDC; }
+  .seccion-linea.dark .btn-linea-pdf:hover { background: #FFFFFF; color: #1A1A1A; }
+  .btn-linea-pdf-icon {
+    font-size: 14px; line-height: 1;
   }
-  .seccion-linea.dark .spec-label { color: #DCDCDC; }
 
   /* ========== ECONOMICA LAYOUT (2 columnas) ========== */
   .economica-layout {
     max-width: 1120px; margin: 0 auto;
     display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
   }
-  .economica-info { /* hereda los estilos del header */ }
   .economica-img {
     background: #FFFFFF; aspect-ratio: 4 / 5; overflow: hidden;
     display: flex; align-items: center; justify-content: center; padding: 24px;
@@ -247,30 +242,56 @@
   }
   .economica-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-  /* ========== FALTA INFORMACION BAND ========== */
-  .falta-info-band {
-    max-width: 1120px; margin: 48px auto 0;
-    padding: 20px 24px;
-    border: 1px dashed #B8B8B8; background: #FAFAFA;
-    display: flex; align-items: center; gap: 16px;
+  /* ========== PORTONES FOTOS ========== */
+  .portones-fotos {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
   }
-  .seccion-linea.dark .falta-info-band { border-color: #4A4A4A; background: #232323; }
-  .falta-info-tag {
-    flex: 0 0 auto;
-    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 2px; color: #D5501B;
-    padding: 6px 12px; border: 1px solid #D5501B;
+  .portones-foto-placeholder {
+    background: #E8E8E8; aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px dashed #C0C0C0;
   }
-  .falta-info-band p {
-    flex: 1;
-    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 14px;
-    color: #5A5A5A; line-height: 1.6;
+  .portones-foto-placeholder span {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 1.5px; color: #8A8A8A;
+    text-align: center; padding: 16px;
   }
-  .seccion-linea.dark .falta-info-band p { color: #B8B8B8; }
 
-  /* ========== OPCIONALES ========== */
-  .section-opcionales { background: #F0EFED; padding: 100px 80px; }
-  .opcionales-header { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  /* ========== EXTRAMEDIDA ========== */
+  .extramedida-graficos {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .extramedida-grafico {
+    background: #FFFFFF; border: 1px dashed #C8C8C8;
+    aspect-ratio: 3 / 4;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  }
+  .extramedida-grafico-num {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 40px;
+    color: #DCDCDC; line-height: 1;
+  }
+  .extramedida-grafico-label {
+    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 2px; color: #8A8A8A;
+    text-align: center; padding: 0 16px;
+  }
+  .extramedida-cta {
+    max-width: 1120px; margin: 56px auto 0; text-align: center;
+  }
+  .btn-naranja {
+    display: inline-block; background: #D5501B; color: #FFFFFF;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 2px; padding: 18px 40px;
+    transition: background 0.2s ease;
+  }
+  .btn-naranja:hover { background: #A33D14; }
+
+  /* ========== DATOS TECNICOS ========== */
+  .section-tecnicos {
+    background: #1A1A1A; padding: 100px 80px; color: #DCDCDC;
+  }
   .section-tag-top {
     font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 12px;
     text-transform: uppercase; letter-spacing: 4px; color: #D5501B;
@@ -279,85 +300,13 @@
     font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
     font-size: 56px; color: #1A1A1A; text-transform: uppercase; line-height: 1; margin-top: 12px;
   }
-  .section-divider { width: 48px; height: 3px; background: #D5501B; border: none; margin: 24px auto; }
-  .section-subtitle-p {
-    font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 17px; color: #5A5A5A;
+  .section-divider { width: 48px; height: 3px; background: #D5501B; border: none; margin: 24px 0; }
+  .tecnicos-header { max-width: 1120px; margin: 0 auto 56px; }
+  .tecnicos-img-wrap {
+    max-width: 600px; margin: 0 auto;
+    background: #FFFFFF; padding: 32px;
   }
-  .opcionales-grid {
-    max-width: 1120px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-  }
-  .opcional-item {
-    background: #FFFFFF; padding: 24px 20px; text-align: center;
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    border: 1px solid #DCDCDC;
-  }
-  .opcional-num {
-    width: 32px; height: 32px; border-radius: 50%; background: #D5501B; color: #FFFFFF;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 14px;
-  }
-  .opcional-name {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
-    font-size: 17px; text-transform: uppercase; color: #1A1A1A;
-  }
-  .opcionales-fotos {
-    max-width: 1120px; margin: 48px auto 0;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-  }
-  .opcional-foto { height: 200px; overflow: hidden; background: #FFFFFF; padding: 12px; }
-  .opcional-foto img { width: 100%; height: 100%; object-fit: contain; }
-
-  /* ========== DATOS TECNICOS ========== */
-  .section-tecnicos {
-    background: #1A1A1A; padding: 100px 80px; color: #DCDCDC;
-  }
-  .tecnicos-grid {
-    max-width: 1120px; margin: 56px auto 0;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
-  }
-  .tecnicos-img { background: #2E2E2E; padding: 24px; }
-  .tecnicos-img img { width: 100%; height: auto; display: block; background: #FFFFFF; padding: 16px; }
-  .tecnicos-list { display: flex; flex-direction: column; gap: 18px; }
-  .tecnico-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding-bottom: 14px; border-bottom: 1px solid #2E2E2E;
-  }
-  .tecnico-key {
-    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 14px;
-    text-transform: uppercase; letter-spacing: 1.5px; color: #8A8A8A;
-  }
-  .tecnico-val {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
-    font-size: 20px; color: #FFFFFF;
-  }
-
-  /* Descargas */
-  .descargas {
-    max-width: 1120px; margin: 56px auto 0;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  }
-  .descarga-card {
-    background: #2E2E2E; border: 1px solid #3A3A3A; padding: 24px;
-    display: flex; align-items: center; gap: 16px;
-    transition: background 0.2s ease;
-  }
-  .descarga-card:hover { background: #3A3A3A; }
-  .descarga-icon {
-    width: 40px; height: 40px; border: 2px solid #D5501B;
-    display: flex; align-items: center; justify-content: center; flex: 0 0 40px;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 14px;
-    color: #D5501B; text-transform: uppercase;
-  }
-  .descarga-info { flex: 1; }
-  .descarga-label {
-    font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 2px; color: #8A8A8A;
-  }
-  .descarga-name {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
-    font-size: 18px; text-transform: uppercase; color: #FFFFFF; margin-top: 2px;
-  }
+  .tecnicos-img-wrap img { width: 100%; height: auto; display: block; }
 
   /* ========== CTA FINAL ========== */
   .section-cta {
@@ -378,7 +327,7 @@
     padding: 18px 36px; border: none; border-radius: 0; cursor: pointer;
   }
 
-  /* ========== FOOTER (igual home) ========== */
+  /* ========== FOOTER ========== */
   .footer { background: #1A1A1A; padding: 80px 80px; color: #DCDCDC; }
   .footer-grid {
     display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 60px;
@@ -434,14 +383,15 @@
     .hero-interior { padding: 0 32px; min-height: 420px; }
     .hero-interior-title { font-size: 60px; }
     .lineas-nav-inner { padding: 16px 24px; }
-    .seccion-linea, .section-opcionales, .section-tecnicos { padding: 80px 32px; }
-    .modelos-grid, .detalles-band, .opcionales-grid, .opcionales-fotos { grid-template-columns: repeat(2, 1fr); }
+    .seccion-linea, .section-tecnicos { padding: 80px 32px; }
+    .modelos-grid { grid-template-columns: repeat(2, 1fr); }
+    .portones-fotos { grid-template-columns: repeat(3, 1fr); }
+    .extramedida-graficos { grid-template-columns: repeat(3, 1fr); }
     .economica-layout { grid-template-columns: 1fr; gap: 32px; }
-    .descargas { grid-template-columns: 1fr; }
-    .tecnicos-grid { grid-template-columns: 1fr; }
     .footer { padding: 64px 32px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .section-cta { padding: 80px 32px; }
   }
 
   @media (max-width: 768px) {
@@ -460,7 +410,8 @@
     .lineas-nav-item img { width: 36px; height: 36px; }
     .lineas-nav-item .linea-label { font-size: 9px; letter-spacing: 0.5px; }
 
-    .seccion-linea, .section-opcionales, .section-tecnicos { padding: 60px 20px; }
+    .seccion-linea, .section-tecnicos { padding: 60px 20px; }
+    .section-cta { padding: 60px 20px; }
     .linea-header { flex-direction: column; gap: 16px; margin-bottom: 36px; }
     .linea-header-icon { width: 72px; height: 72px; }
     .linea-header-title { font-size: 36px; }
@@ -468,13 +419,14 @@
     .modelos-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
     .modelo-card-img { height: 180px; }
     .modelo-card-name { font-size: 16px; }
-    .detalles-band, .opcionales-grid, .opcionales-fotos { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .specs-band { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .spec-num { font-size: 32px; }
+    .portones-fotos { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .extramedida-graficos { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .economica-layout { grid-template-columns: 1fr; gap: 32px; }
+    .linea-btns { gap: 12px; }
+    .btn-linea-pdf { padding: 12px 20px; font-size: 11px; }
 
     .section-title-h2 { font-size: 36px; }
     .cta-title { font-size: 32px; }
-    .section-cta { padding: 60px 20px; }
 
     .footer { padding: 48px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -529,21 +481,67 @@
 <!-- ========== INDICE LINEAS ========== -->
 <nav class="lineas-nav">
   <div class="lineas-nav-inner">
+    <a href="#ignifugas" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-ignifugas.jpg" alt=""><span class="linea-label">Ignífugas</span></a>
     <a href="#inyectadas" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-inyectadas.jpg" alt=""><span class="linea-label">Inyectadas</span></a>
     <a href="#seguridad" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-seguridad.jpg" alt=""><span class="linea-label">Seguridad</span></a>
-    <a href="#ignifugas" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-ignifugas.jpg" alt=""><span class="linea-label">Ignífugas</span></a>
     <a href="#dobles" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-portones.jpg" alt=""><span class="linea-label">Dobles y portones</span></a>
-    <a href="#economica" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-economica.jpg" alt=""><span class="linea-label">Económica</span></a>
     <a href="#extramedida" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-extramedida.png" alt=""><span class="linea-label">Extramedida</span></a>
+    <a href="#economica" class="lineas-nav-item"><img src="assets/iconos-puertas/icono-economica.jpg" alt=""><span class="linea-label">Económica</span></a>
   </div>
 </nav>
 
-<!-- ========== 1. INYECTADAS ========== -->
+<!-- ========== 1. IGNÍFUGAS ========== -->
+<section class="seccion-linea alt" id="ignifugas">
+  <div class="linea-header">
+    <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-ignifugas.jpg" alt=""></div>
+    <div class="linea-header-text">
+      <div class="linea-header-tag">LÍNEA 01</div>
+      <h2 class="linea-header-title">Ignífugas</h2>
+      <p class="linea-header-desc">Línea con resistencia al fuego para sectores de riesgo. Seis modelos disponibles, incluida una versión ventilada.</p>
+    </div>
+  </div>
+
+  <div class="modelos-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
+    <!-- Fondo blanco: FS90, FS60, FS30 -->
+    <div class="modelo-card">
+      <div class="modelo-card-img contain"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt="FS90"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">FS90</div></div>
+    </div>
+    <div class="modelo-card">
+      <div class="modelo-card-img contain"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt="FS60"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">FS60</div></div>
+    </div>
+    <div class="modelo-card">
+      <span class="badge-dev">En desarrollo</span>
+      <div class="modelo-card-img contain"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt="FS30"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">FS30</div></div>
+    </div>
+    <!-- Fondo gris: 23, Ventilada, 26 -->
+    <div class="modelo-card">
+      <div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-23.jpg" alt="Modelo 23"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">23</div></div>
+    </div>
+    <div class="modelo-card">
+      <div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-venti.jpg" alt="Ventilada"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">Ventilada</div></div>
+    </div>
+    <div class="modelo-card">
+      <div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-26.jpg" alt="Modelo 26"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">26</div></div>
+    </div>
+  </div>
+
+  <div class="linea-btns">
+    <a href="fichas-pdf/ficha-tecnica-modelo-23.pdf" target="_blank" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Opcionales</a>
+  </div>
+</section>
+
+<!-- ========== 2. INYECTADAS ========== -->
 <section class="seccion-linea" id="inyectadas">
   <div class="linea-header">
     <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-inyectadas.jpg" alt=""></div>
     <div class="linea-header-text">
-      <div class="linea-header-tag">LÍNEA 01</div>
+      <div class="linea-header-tag">LÍNEA 02</div>
       <h2 class="linea-header-title">Inyectadas con poliuretano</h2>
       <p class="linea-header-desc">Doble chapa con inyección de poliuretano expandido como núcleo. Es la base de toda nuestra producción y se aplica al resto de las líneas.</p>
     </div>
@@ -560,18 +558,18 @@
     <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/inyectadas/render-modelo-18.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">18</div></div></div>
   </div>
 
-  <div class="falta-info-band">
-    <span class="falta-info-tag">Falta información</span>
-    <p>Especificaciones técnicas (espesor, calibre de chapa, dimensiones estándar) a completar con datos oficiales del cliente.</p>
+  <div class="linea-btns">
+    <a href="fichas-pdf/ficha-tecnica-modelo-06.pdf" target="_blank" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Opcionales</a>
+    <a href="fichas-pdf/ficha-tecnica-modelo-06.pdf" target="_blank" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Datos técnicos</a>
   </div>
 </section>
 
-<!-- ========== 2. SEGURIDAD ========== -->
+<!-- ========== 3. SEGURIDAD ========== -->
 <section class="seccion-linea dark" id="seguridad">
   <div class="linea-header">
     <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-seguridad.jpg" alt=""></div>
     <div class="linea-header-text">
-      <div class="linea-header-tag">LÍNEA 02</div>
+      <div class="linea-header-tag">LÍNEA 03</div>
       <h2 class="linea-header-title">Seguridad</h2>
       <p class="linea-header-desc">Línea premium con cerradura Kallay y bisagra pivot de diseño propio Pametálica. Pensada para accesos principales que requieren mayor protección.</p>
     </div>
@@ -580,40 +578,17 @@
   <div class="modelos-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
     <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">13</div></div></div>
     <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/seguridad/render-modelo-14.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">14</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/seguridad/render-modelo-19.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">19</div></div></div>
+    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/ignifugas/render-modelo-26.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">26</div></div></div>
   </div>
 
-  <div class="falta-info-band">
-    <span class="falta-info-tag">Falta información</span>
-    <p>Detalles técnicos del sistema (cerradura, bisagras, refuerzos) a incorporar cuando el cliente confirme qué muestra cada foto disponible.</p>
-  </div>
-</section>
-
-<!-- ========== 3. IGNIFUGAS ========== -->
-<section class="seccion-linea alt" id="ignifugas">
-  <div class="linea-header">
-    <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-ignifugas.jpg" alt=""></div>
-    <div class="linea-header-text">
-      <div class="linea-header-tag">LÍNEA 03</div>
-      <h2 class="linea-header-title">Ignífugas</h2>
-      <p class="linea-header-desc">Línea con resistencia al fuego para sectores de riesgo. Tres modelos disponibles, incluida una versión ventilada.</p>
-    </div>
-  </div>
-
-  <div class="modelos-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-23.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">23</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-26.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">26</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-venti.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">Ventilada</div></div></div>
-  </div>
-
-  <div class="falta-info-band">
-    <span class="falta-info-tag">Falta información</span>
-    <p>Certificaciones, normativa de resistencia al fuego (F-XX) y opciones específicas por modelo a confirmar con Pametálica.</p>
+  <div class="linea-btns">
+    <a href="fichas-pdf/ficha-tecnica-modelo-13.pdf" target="_blank" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Opcionales</a>
+    <a href="fichas-pdf/ficha-tecnica-modelo-13.pdf" target="_blank" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Datos técnicos</a>
   </div>
 </section>
 
 <!-- ========== 4. DOBLES Y PORTONES ========== -->
-<section class="seccion-linea" id="dobles">
+<section class="seccion-linea alt" id="dobles">
   <div class="linea-header">
     <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-portones.jpg" alt=""></div>
     <div class="linea-header-text">
@@ -623,123 +598,88 @@
     </div>
   </div>
 
-  <div class="modelos-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 720px;">
-    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-puerta-doble.jpg" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Doble hoja</div></div></div>
-    <div class="modelo-card"><div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-porton-doble.png" alt=""></div><div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Portón 3 hojas</div></div></div>
-  </div>
-
-  <div style="max-width: 1120px; margin: 56px auto 0; background: #F0EFED; padding: 32px;">
-    <div style="font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:3px;color:#D5501B;text-align:center;margin-bottom:16px;">Medidas estándar disponibles</div>
-    <img src="assets/puertas/tecnicos/grafico-portones-medidas.png" alt="Medidas portones" style="max-width:100%;margin:0 auto;display:block;">
-  </div>
-</section>
-
-<!-- ========== 5. ECONOMICA ========== -->
-<section class="seccion-linea alt" id="economica">
-  <div class="economica-layout">
-    <div class="economica-info">
-      <div class="linea-header-icon" style="margin-bottom: 24px;"><img src="assets/iconos-puertas/icono-economica.jpg" alt=""></div>
-      <div class="linea-header-tag">LÍNEA 05</div>
-      <h2 class="linea-header-title">Económica</h2>
-      <p class="linea-header-desc" style="margin-top: 20px;">Versión simplificada de la línea principal. Modelo único con foco en costo y rapidez de producción.</p>
-      <div class="falta-info-band" style="margin-top: 32px;">
-        <span class="falta-info-tag">Falta información</span>
-        <p>Alcance, características específicas y casos de uso a definir con Pametálica.</p>
+  <div class="portones-fotos">
+    <div class="modelo-card">
+      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-puerta-doble.jpg" alt="Puerta doble hoja"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Doble hoja</div></div>
+    </div>
+    <div class="modelo-card">
+      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-porton-doble.png" alt="Portón 3 hojas"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Portón 3 hojas</div></div>
+    </div>
+    <div class="modelo-card">
+      <div class="portones-foto-placeholder" style="height: 240px;">
+        <span>Foto a confirmar</span>
       </div>
+      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">A confirmar</div></div>
     </div>
-    <div class="economica-img">
-      <img src="assets/puertas/economica/render-linea-economica.jpg" alt="Puerta línea económica">
-    </div>
+  </div>
+
+  <div class="linea-btns">
+    <a href="#" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Opcionales</a>
+    <a href="#" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Datos técnicos</a>
   </div>
 </section>
 
-<!-- ========== 6. EXTRAMEDIDA ========== -->
+<!-- ========== 5. EXTRAMEDIDA ========== -->
 <section class="seccion-linea" id="extramedida">
   <div class="linea-header">
     <div class="linea-header-icon"><img src="assets/iconos-puertas/icono-extramedida.png" alt=""></div>
     <div class="linea-header-text">
-      <div class="linea-header-tag">LÍNEA 06</div>
+      <div class="linea-header-tag">LÍNEA 05</div>
       <h2 class="linea-header-title">Extramedida</h2>
-      <p class="linea-header-desc">Fabricación a medida fuera del catálogo estándar. Cualquier modelo de nuestras líneas se puede producir con medidas especiales según los requerimientos del proyecto. Consultar con el equipo técnico para presupuestar.</p>
+      <p class="linea-header-desc">Fabricación a medida fuera del catálogo estándar. Cualquier modelo de nuestras líneas se puede producir con medidas especiales según los requerimientos del proyecto.</p>
     </div>
   </div>
 
-  <div style="max-width: 720px; margin: 0 auto; text-align: center; padding: 48px 24px; background: #F0EFED;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;text-transform:uppercase;color:#1A1A1A;line-height:1.1;">¿Necesitás una medida especial?</div>
-    <p style="font-family:'Barlow',sans-serif;font-weight:400;font-size:16px;color:#5A5A5A;margin-top:12px;">Mandanos el detalle de tu proyecto por WhatsApp y te respondemos con presupuesto y plazo de fabricación.</p>
-    <a href="https://wa.me/541126909379" target="_blank" rel="noopener" style="display:inline-block;margin-top:24px;background:#D5501B;color:#FFFFFF;font-family:'Barlow',sans-serif;font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:2px;padding:16px 32px;">Consultar por WhatsApp →</a>
+  <div class="extramedida-graficos">
+    <div class="extramedida-grafico">
+      <div class="extramedida-grafico-num">01</div>
+      <div class="extramedida-grafico-label">Gráfico a confirmar</div>
+    </div>
+    <div class="extramedida-grafico">
+      <div class="extramedida-grafico-num">02</div>
+      <div class="extramedida-grafico-label">Gráfico a confirmar</div>
+    </div>
+    <div class="extramedida-grafico">
+      <div class="extramedida-grafico-num">03</div>
+      <div class="extramedida-grafico-label">Gráfico a confirmar</div>
+    </div>
+  </div>
+
+  <div class="extramedida-cta">
+    <a href="https://wa.me/541147623000" target="_blank" rel="noopener" class="btn-naranja">Consultar por disponibilidad →</a>
   </div>
 </section>
 
-<!-- ========== OPCIONALES ========== -->
-<section class="section-opcionales">
-  <div class="opcionales-header">
-    <span class="section-tag-top">ACCESORIOS</span>
-    <h2 class="section-title-h2">Opcionales</h2>
-    <hr class="section-divider">
-    <p class="section-subtitle-p">Accesorios disponibles según el modelo de puerta. Lista basada en el diagrama técnico provisto por Pametálica.</p>
-  </div>
-
-  <div class="falta-info-band" style="margin-bottom: 48px;">
-    <span class="falta-info-tag">A confirmar</span>
-    <p>La lista proviene del gráfico oficial <em>tabla-opcionales</em>. Disponibilidad y compatibilidad por modelo a validar con Pametálica antes de publicar.</p>
-  </div>
-
-  <div class="opcionales-grid">
-    <div class="opcional-item"><div class="opcional-num">1</div><div class="opcional-name">Bocallave</div></div>
-    <div class="opcional-item"><div class="opcional-num">2</div><div class="opcional-name">Media manija</div></div>
-    <div class="opcional-item"><div class="opcional-num">3</div><div class="opcional-name">Pomo</div></div>
-    <div class="opcional-item"><div class="opcional-num">4</div><div class="opcional-name">Barral recto</div></div>
-    <div class="opcional-item"><div class="opcional-num">5</div><div class="opcional-name">Cierra puerta hidráulico</div></div>
-    <div class="opcional-item"><div class="opcional-num">6</div><div class="opcional-name">Cierre a rodillo</div></div>
-    <div class="opcional-item"><div class="opcional-num">7</div><div class="opcional-name">Barral antipánico</div></div>
-    <div class="opcional-item"><div class="opcional-num">8</div><div class="opcional-name">Cerrojo superior</div></div>
-    <div class="opcional-item"><div class="opcional-num">9</div><div class="opcional-name">Cerrojo inferior</div></div>
-    <div class="opcional-item"><div class="opcional-num">10</div><div class="opcional-name">Botaguas</div></div>
-    <div class="opcional-item"><div class="opcional-num">11</div><div class="opcional-name">Umbral de marco</div></div>
-    <div class="opcional-item"><div class="opcional-num">+</div><div class="opcional-name">Mirador óptico</div></div>
-  </div>
-
-  <div class="opcionales-fotos">
-    <div class="opcional-foto"><img src="assets/puertas/opcionales/foto-opcional-a.jpg" alt=""></div>
-    <div class="opcional-foto"><img src="assets/puertas/opcionales/foto-opcional-b.jpg" alt=""></div>
-    <div class="opcional-foto"><img src="assets/puertas/opcionales/foto-opcional-c.jpg" alt=""></div>
-    <div class="opcional-foto"><img src="assets/puertas/opcionales/foto-opcional-d.jpg" alt=""></div>
+<!-- ========== 6. ECONÓMICA ========== -->
+<section class="seccion-linea alt" id="economica">
+  <div class="economica-layout">
+    <div class="economica-info">
+      <div class="linea-header-icon" style="margin-bottom: 24px;"><img src="assets/iconos-puertas/icono-economica.jpg" alt=""></div>
+      <div class="linea-header-tag">LÍNEA 06</div>
+      <h2 class="linea-header-title">Económica</h2>
+      <p class="linea-header-desc" style="margin-top: 20px;">Versión simplificada de la línea principal. Modelo único con foco en costo y rapidez de producción.</p>
+      <div class="linea-btns" style="margin-top: 40px;">
+        <a href="fichas-pdf/ficha-tecnica-modelo-23.pdf" target="_blank" class="btn-linea-pdf"><span class="btn-linea-pdf-icon">↓</span> Datos técnicos</a>
+      </div>
+    </div>
+    <div class="economica-img">
+      <img src="assets/puertas/ignifugas/render-modelo-23.jpg" alt="Puerta línea económica">
+    </div>
   </div>
 </section>
 
 <!-- ========== DATOS TECNICOS ========== -->
 <section class="section-tecnicos">
-  <div class="opcionales-header">
-    <span class="section-tag-top" style="color:#D5501B;">FICHA TÉCNICA</span>
-    <h2 class="section-title-h2" style="color:#FFFFFF;">Datos técnicos</h2>
+  <div class="tecnicos-header">
+    <span class="section-tag-top">FICHA TÉCNICA</span>
+    <h2 class="section-title-h2" style="color:#FFFFFF;">Mano de apertura</h2>
     <hr class="section-divider">
-    <p class="section-subtitle-p" style="color:#DCDCDC;">Para detalle por modelo, descargá las fichas técnicas oficiales.</p>
+    <p style="font-family:'Barlow',sans-serif;font-weight:400;font-size:17px;color:#DCDCDC;max-width:560px;">Izquierda o derecha según la instalación requerida.</p>
   </div>
-
-  <div class="tecnicos-grid">
-    <div class="tecnicos-img"><img src="assets/puertas/tecnicos/grafico-datos-tecnicos.png" alt="Datos técnicos"></div>
-    <div class="tecnicos-list">
-      <div class="falta-info-band" style="background:#232323; border-color:#4A4A4A; margin-top:0;">
-        <span class="falta-info-tag">Falta información</span>
-        <p>Especificaciones detalladas (espesor de chapa, calibres, medidas estándar) a completar con datos verificados por Pametálica. Mientras tanto las fichas PDF abajo contienen los datos oficiales por modelo.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="descargas">
-    <a href="fichas-pdf/ficha-tecnica-modelo-06.pdf" target="_blank" class="descarga-card">
-      <div class="descarga-icon">PDF</div>
-      <div class="descarga-info"><div class="descarga-label">Ficha técnica</div><div class="descarga-name">Modelo 06</div></div>
-    </a>
-    <a href="fichas-pdf/ficha-tecnica-modelo-13.pdf" target="_blank" class="descarga-card">
-      <div class="descarga-icon">PDF</div>
-      <div class="descarga-info"><div class="descarga-label">Ficha técnica</div><div class="descarga-name">Modelo 13</div></div>
-    </a>
-    <a href="fichas-pdf/ficha-tecnica-modelo-23.pdf" target="_blank" class="descarga-card">
-      <div class="descarga-icon">PDF</div>
-      <div class="descarga-info"><div class="descarga-label">Ficha técnica</div><div class="descarga-name">Modelo 23</div></div>
-    </a>
+  <div class="tecnicos-img-wrap">
+    <img src="assets/puertas/tecnicos/grafico-datos-tecnicos.png" alt="Mano de apertura — Izquierda y Derecha">
   </div>
 </section>
 
@@ -775,7 +715,7 @@
       <div class="footer-col-title">CONTACTO</div>
       <ul class="footer-info">
         <li>011 4762-3000</li>
-        <li>WhatsApp 11 2690-9379</li>
+        <li>WhatsApp 011 4762-3000</li>
         <li>pametalica@pametalica.com.ar</li>
         <li>@pametalica_aberturas</li>
         <li>Belgrano 3174, Munro</li>
@@ -788,7 +728,7 @@
   </div>
 </footer>
 
-<a href="https://wa.me/541126909379" target="_blank" rel="noopener" class="float-wa hidden-initial" aria-label="WhatsApp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="WhatsApp"></a>
+<a href="https://wa.me/541147623000" target="_blank" rel="noopener" class="float-wa hidden-initial" aria-label="WhatsApp"><img src="assets/iconos-ui/whatsapp-logo.webp" alt="WhatsApp"></a>
 
 <script>
   (function() {
@@ -802,7 +742,6 @@
     function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
     function onScroll() {
       var y = window.scrollY;
-      // Páginas interiores: navbar siempre con fondo
       navbar.classList.add('scrolled');
 
       if (isMobile()) {
