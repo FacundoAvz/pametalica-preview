@@ -203,13 +203,14 @@
   }
   .seccion-linea.dark .modelo-card-name { color: #FFFFFF; }
 
-  /* ========== BADGE EN DESARROLLO ========== */
-  .badge-dev {
+  /* ========== BADGES ========== */
+  .badge-dev, .badge-cert {
     position: absolute; top: 12px; left: 12px; z-index: 2;
     font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 10px;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    background: #D5501B; color: #FFFFFF; padding: 4px 10px;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px;
   }
+  .badge-dev { background: #D5501B; color: #FFFFFF; }
+  .badge-cert { background: #1A1A1A; color: #FFFFFF; }
 
   /* ========== BOTONES PDF POR LINEA ========== */
   .linea-btns {
@@ -504,12 +505,14 @@
   </div>
 
   <div class="modelos-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 900px;">
-    <!-- Fondo blanco: FS90, FS60, FS30 -->
+    <!-- Fondo blanco: FS90, FS60, FS30 — Certif. INTI / En desarrollo -->
     <div class="modelo-card">
+      <span class="badge-cert">Certif. INTI</span>
       <div class="modelo-card-img contain"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt="FS90"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">FS90</div></div>
     </div>
     <div class="modelo-card">
+      <span class="badge-cert">Certif. INTI</span>
       <div class="modelo-card-img contain"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt="FS60"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">FS60</div></div>
     </div>
@@ -518,16 +521,19 @@
       <div class="modelo-card-img contain"><img src="assets/puertas/seguridad/render-modelo-13.jpg" alt="FS30"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">FS30</div></div>
     </div>
-    <!-- Fondo gris: 23, Ventilada, 26 -->
+    <!-- Fondo gris: 23, Ventilada, 26 — Certif. CABA -->
     <div class="modelo-card">
+      <span class="badge-cert">Certif. CABA</span>
       <div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-23.jpg" alt="Modelo 23"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">23</div></div>
     </div>
     <div class="modelo-card">
+      <span class="badge-cert">Certif. CABA</span>
       <div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-venti.jpg" alt="Ventilada"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">Ventilada</div></div>
     </div>
     <div class="modelo-card">
+      <span class="badge-cert">Certif. CABA</span>
       <div class="modelo-card-img"><img src="assets/puertas/ignifugas/render-modelo-26.jpg" alt="Modelo 26"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">MODELO</div><div class="modelo-card-name">26</div></div>
     </div>
@@ -602,18 +608,16 @@
 
   <div class="portones-fotos">
     <div class="modelo-card">
-      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-puerta-doble.jpg" alt="Puerta doble hoja"></div>
+      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-puerta-doble.jpg" alt="Doble hoja"></div>
       <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Doble hoja</div></div>
     </div>
     <div class="modelo-card">
-      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/render-porton-doble.png" alt="Portón 3 hojas"></div>
-      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Portón 3 hojas</div></div>
+      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/puerta-hoja-media.png" alt="Hoja y media"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Hoja y media</div></div>
     </div>
     <div class="modelo-card">
-      <div class="portones-foto-placeholder" style="height: 240px;">
-        <span>Foto a confirmar</span>
-      </div>
-      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">A confirmar</div></div>
+      <div class="modelo-card-img contain"><img src="assets/puertas/dobles-portones/porton-3-hojas.png" alt="Portón 3 hojas"></div>
+      <div class="modelo-card-body"><div class="modelo-card-num">TIPO</div><div class="modelo-card-name">Portón 3 hojas</div></div>
     </div>
   </div>
 
@@ -634,8 +638,8 @@
     </div>
   </div>
 
-  <div style="max-width: 680px; margin: 0 auto;">
-    <img src="assets/puertas/extramedida/Conceptualizacion_extramedida.png" alt="Conceptualización Extramedida" style="width:100%;height:auto;display:block;">
+  <div style="max-width: 720px; margin: 0 auto;">
+    <img src="assets/puertas/extramedida/extramedida-v2.png" alt="Conceptualización Extramedida" style="width:100%;height:auto;display:block;">
   </div>
 
   <div class="extramedida-cta">
